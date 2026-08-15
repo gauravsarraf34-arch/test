@@ -51,7 +51,7 @@ async function runTest() {
 
   // Write back to DB
   await writeData(data);
-  console.log(`[4] Successfully saved submenu '${subLabel}' and page '/${subSlug}' to SQLite!`);
+  console.log(`[4] Successfully saved submenu '${subLabel}' and page '/${subSlug}' to CMS store!`);
 
   // Verify by re-reading DB
   const reRead = await readData();

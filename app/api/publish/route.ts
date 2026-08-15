@@ -9,22 +9,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { tenantId, pageId } = (await request.json()) as { tenantId?: string; pageId?: string };
-  const data = await readData();
-  const tenant = data.tenants.find((entry) => entry.id === tenantId);
+  try {
+    const { tenantId, pageId } = (await request.json().catch(() => ({}))) as {
+      tenantId?: string;
+      pageId?: string;
+    };
 
-  if (!tenant) {
-    return NextResponse.json({ error: "Tenant not found." }, { status: 404 });
+    const data = await readData();
+    const tenant = data.tenants.find((entry) => entry.id === tenantId);
+
+    if (!tenant) {
+      return NextResponse.json({ error: "Tenant not found." }, { status: 404 });
+    }
+
+    const page = tenant.pages.find((entry) => entry.id === pageId);
+    if (!page) {
+      return NextResponse.json({ error: "Page not found." }, { status: 404 });
+    }
+
+    page.published = true;
+    tenant.status = "Active";
+
+    await writeData(data);
+    return NextResponse.json({ ok: true, tenant, page });
+  } catch (error) {
+    console.error("Publish error:", error);
+    return NextResponse.json({ error: "Failed to publish page." }, { status: 500 });
   }
-
-  const page = tenant.pages.find((entry) => entry.id === pageId);
-  if (!page) {
-    return NextResponse.json({ error: "Page not found." }, { status: 404 });
-  }
-
-  page.published = true;
-  tenant.status = "Active";
-
-  await writeData(data);
-  return NextResponse.json({ ok: true, tenant, page });
 }

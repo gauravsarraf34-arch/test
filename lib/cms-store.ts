@@ -1,6 +1,6 @@
 import path from "path";
-import { mkdirSync } from "fs";
-import Database from "better-sqlite3";
+import os from "os";
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 
 export type CmsRole = "admin" | "editor" | "designer";
 
@@ -492,113 +492,150 @@ const defaultData: CmsData = {
   ],
 };
 
-const dbPath = path.join(process.cwd(), "data", "cms.db");
-mkdirSync(path.dirname(dbPath), { recursive: true });
-
-const db = new Database(dbPath);
-db.pragma("journal_mode = WAL");
-db.prepare(`
-  CREATE TABLE IF NOT EXISTS cms_data (
-    id INTEGER PRIMARY KEY CHECK (id = 1),
-    payload TEXT NOT NULL
-  )
-`).run();
-
-export function getDataFilePath() {
-  return dbPath;
+// Global in-memory cache to ensure speed and state sharing across serverless requests
+declare global {
+  // eslint-disable-next-line no-var
+  var __cmsDataCache: CmsData | undefined;
 }
 
-export async function readData(): Promise<CmsData> {
-  const row = db
-    .prepare("SELECT payload FROM cms_data WHERE id = 1")
-    .get() as { payload?: string } | undefined;
+function resolveFilePath(): string {
+  // Check if running on Vercel or in a serverless environment
+  const isServerless = Boolean(
+    process.env.VERCEL ||
+    process.env.AWS_LAMBDA_FUNCTION_NAME ||
+    process.env.NETLIFY
+  );
 
-  if (!row?.payload) {
-    await writeData(defaultData);
-    return defaultData;
+  if (isServerless) {
+    return path.join(os.tmpdir(), "cms-data.json");
   }
 
-  try {
-    const data = JSON.parse(row.payload) as CmsData;
+  return path.join(process.cwd(), "data", "cms.json");
+}
 
-    // Migration: Ensure all tenants have new arrays, navigation, and linked pages for submenus
-    const migratedTenants = data.tenants.map((tenant) => {
-      let navigation = tenant.navigation;
-      const pages = [...(tenant.pages || [])];
+export function getDataFilePath() {
+  return resolveFilePath();
+}
 
-      if (!navigation || navigation.length === 0) {
-        if (pages.length > 0) {
-          navigation = pages.map((p) => ({
-            id: `menu-${p.id}`,
-            label: p.title,
-            link: p.slug === "home" ? `/tenant/${tenant.id}` : `/tenant/${tenant.id}/${p.slug}`,
-            pageId: p.id,
-            children: [],
-          }));
+function deepClone<T>(item: T): T {
+  return JSON.parse(JSON.stringify(item));
+}
+
+function migrateAndHealData(raw: CmsData): CmsData {
+  const users = Array.isArray(raw.users) && raw.users.length > 0 ? raw.users : defaultData.users;
+  const rawTenants = Array.isArray(raw.tenants) && raw.tenants.length > 0 ? raw.tenants : defaultData.tenants;
+
+  const migratedTenants = rawTenants.map((tenant) => {
+    let navigation = tenant.navigation;
+    const pages = [...(tenant.pages || [])];
+
+    if (!navigation || navigation.length === 0) {
+      if (pages.length > 0) {
+        navigation = pages.map((p) => ({
+          id: `menu-${p.id}`,
+          label: p.title,
+          link: p.slug === "home" ? `/tenant/${tenant.id}` : `/tenant/${tenant.id}/${p.slug}`,
+          pageId: p.id,
+          children: [],
+        }));
+      } else {
+        navigation = (tenant.nav || ["Home", "About", "Services", "Contact"]).map((item, idx) => ({
+          id: `menu-nav-${idx}`,
+          label: item,
+          link: "#",
+          children: [],
+        }));
+      }
+    }
+
+    // Sync menu items with existing pages (never recreate deleted pages)
+    const healMenuItem = (item: CmsMenuItem) => {
+      if (item.pageId) {
+        const linked = pages.find((p) => p.id === item.pageId);
+        if (linked) {
+          item.link = linked.slug === "home" ? `/tenant/${tenant.id}` : `/tenant/${tenant.id}/${linked.slug}`;
         } else {
-          navigation = (tenant.nav || ["Home", "About", "Services", "Contact"]).map((item, idx) => ({
-            id: `menu-nav-${idx}`,
-            label: item,
-            link: "#",
-            children: [],
-          }));
+          item.pageId = undefined;
+          if (!item.link || item.link.startsWith(`/tenant/${tenant.id}/`)) {
+            item.link = "#";
+          }
         }
       }
 
-      // Sync menu items with existing pages (never recreate deleted pages)
-      const healMenuItem = (item: CmsMenuItem) => {
-        if (item.pageId) {
-          const linked = pages.find((p) => p.id === item.pageId);
-          if (linked) {
-            item.link = linked.slug === "home" ? `/tenant/${tenant.id}` : `/tenant/${tenant.id}/${linked.slug}`;
-          } else {
-            // Page was deleted by user! Clear the pageId and reset link
-            item.pageId = undefined;
-            if (!item.link || item.link.startsWith(`/tenant/${tenant.id}/`)) {
-              item.link = "#";
-            }
-          }
-        }
+      if (item.children && item.children.length > 0) {
+        item.children.forEach(healMenuItem);
+      }
+    };
 
-        if (item.children && item.children.length > 0) {
-          item.children.forEach(healMenuItem);
-        }
-      };
+    navigation.forEach(healMenuItem);
 
-      navigation.forEach(healMenuItem);
+    return {
+      ...tenant,
+      navigation,
+      pages,
+      notices: tenant.notices || [],
+      programs: tenant.programs || [],
+      services: tenant.services || [],
+      statistics: tenant.statistics || [],
+    };
+  });
 
-      return {
-        ...tenant,
-        navigation,
-        pages,
-        notices: tenant.notices || [],
-        programs: tenant.programs || [],
-        services: tenant.services || [],
-        statistics: tenant.statistics || [],
-      };
-    });
-
-    // If migration was needed, save the updated data
-    if (JSON.stringify(migratedTenants) !== JSON.stringify(data.tenants)) {
-      const migratedData = { ...data, tenants: migratedTenants };
-      await writeData(migratedData);
-      return migratedData;
-    }
-
-    return data;
-  } catch {
-    await writeData(defaultData);
-    return defaultData;
-  }
+  return {
+    users,
+    tenants: migratedTenants,
+  };
 }
 
-export async function writeData(data: CmsData) {
-  db.prepare(
-    `
-      INSERT INTO cms_data (id, payload)
-      VALUES (1, ?)
-      ON CONFLICT(id)
-      DO UPDATE SET payload = excluded.payload
-    `,
-  ).run(JSON.stringify(data, null, 2));
+export async function readData(): Promise<CmsData> {
+  // If memory cache exists, return it
+  if (globalThis.__cmsDataCache) {
+    return deepClone(globalThis.__cmsDataCache);
+  }
+
+  const filePath = resolveFilePath();
+
+  try {
+    if (existsSync(filePath)) {
+      const fileContent = readFileSync(filePath, "utf-8");
+      if (fileContent.trim()) {
+        const parsed = JSON.parse(fileContent) as CmsData;
+        const healed = migrateAndHealData(parsed);
+        globalThis.__cmsDataCache = healed;
+        return deepClone(healed);
+      }
+    }
+  } catch (error) {
+    console.warn("Could not read from file storage, falling back to default data:", error);
+  }
+
+  // Fallback to default initial data
+  const initial = migrateAndHealData(defaultData);
+  globalThis.__cmsDataCache = initial;
+  
+  // Try persisting initial state
+  try {
+    await writeData(initial);
+  } catch {
+    // Ignore initial write errors if disk is read-only
+  }
+
+  return deepClone(initial);
+}
+
+export async function writeData(data: CmsData): Promise<void> {
+  const healed = migrateAndHealData(data);
+  globalThis.__cmsDataCache = deepClone(healed);
+
+  const filePath = resolveFilePath();
+
+  try {
+    const dir = path.dirname(filePath);
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
+    }
+    writeFileSync(filePath, JSON.stringify(healed, null, 2), "utf-8");
+  } catch (error) {
+    console.warn("Writing to disk failed (operating in in-memory mode):", error);
+    // In serverless when disk write fails, memory cache still holds the state
+  }
 }

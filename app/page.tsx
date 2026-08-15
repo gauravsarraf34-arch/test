@@ -231,7 +231,15 @@ export default function DashboardPage() {
         body: JSON.stringify(loginForm),
       });
 
-      const data = (await response.json()) as { error?: string; user?: User };
+      let data: { error?: string; user?: User } = {};
+      try {
+        data = (await response.json()) as { error?: string; user?: User };
+      } catch {
+        // If response is not valid JSON
+        setLoginError(`Server returned status ${response.status}. Please check deployment.`);
+        setIsLoggingIn(false);
+        return;
+      }
 
       if (!response.ok || !data.user) {
         setLoginError(data.error || "Invalid login credentials.");
@@ -251,7 +259,8 @@ export default function DashboardPage() {
           setSelectedPageId(tenantData.tenants[0].pages[0]?.id || "");
         }
       }
-    } catch {
+    } catch (err: unknown) {
+      console.error("Login request failed:", err);
       setLoginError("Failed to communicate with CMS server.");
     } finally {
       setIsLoggingIn(false);

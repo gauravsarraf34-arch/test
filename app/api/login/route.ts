@@ -3,6 +3,9 @@ import { cookies } from "next/headers";
 import { SESSION_COOKIE, signSession } from "@/lib/auth";
 import { readData } from "@/lib/cms-store";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json().catch(() => ({}))) as { email?: string; password?: string };

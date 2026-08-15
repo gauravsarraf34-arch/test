@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { getSessionUserId } from "@/lib/auth";
 import { readData } from "@/lib/cms-store";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export async function GET() {
   try {
     const userId = await getSessionUserId();

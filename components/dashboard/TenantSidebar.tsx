@@ -4,7 +4,7 @@ import React from "react";
 import { Tenant, UserRole } from "@/types/cms";
 import { HelpTooltip } from "./HelpTooltip";
 
-export type DashboardTab = "editor" | "menu" | "headerfooter" | "theme" | "blocks" | "media" | "preview";
+export type DashboardTab = "editor" | "menu" | "headerfooter" | "theme" | "blocks" | "media" | "preview" | "guide";
 
 interface TenantSidebarProps {
   tenants: Tenant[];
@@ -61,6 +61,7 @@ export function TenantSidebar({
     },
     { id: "media", label: "Media Library", icon: "🖼️", count: activeTenant.media?.length || 0 },
     { id: "preview", label: "Live Simulator", icon: "⚡" },
+    { id: "guide", label: "User Manual & Guide", icon: "📖" },
   ];
 
   return (

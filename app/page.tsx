@@ -14,6 +14,7 @@ import { OnboardingModal } from "@/components/dashboard/OnboardingModal";
 import { CreateTenantModal } from "@/components/dashboard/CreateTenantModal";
 import { NavigationMenuEditor } from "@/components/dashboard/NavigationMenuEditor";
 import { HeaderFooterEditor } from "@/components/dashboard/HeaderFooterEditor";
+import { UserManualTab } from "@/components/dashboard/UserManualTab";
 
 const generateId = (prefix: string) =>
   `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
@@ -550,7 +551,7 @@ export default function DashboardPage() {
       lastSavedTime={lastSavedTime}
       saveError={saveError}
       onSaveNow={() => syncToServer(tenants, users)}
-      onStartOnboarding={() => setShowOnboarding(true)}
+      onStartOnboarding={() => setActiveTab("guide")}
       onLogout={handleLogout}
     >
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
@@ -652,6 +653,10 @@ export default function DashboardPage() {
 
             {activeTab === "preview" && (
               <LivePreviewPane tenant={activeTenant} page={activePage} />
+            )}
+
+            {activeTab === "guide" && (
+              <UserManualTab tenant={activeTenant} />
             )}
           </div>
         </div>

@@ -5,8 +5,36 @@ let pool: Pool | null = null;
 let isInitialized = false;
 
 function getDbConfig() {
+  const urlString = process.env.DATABASE_URL || process.env.MYSQL_URL;
+  if (urlString) {
+    try {
+      const parsed = new URL(urlString);
+      const isLocal = ["localhost", "127.0.0.1"].includes(parsed.hostname);
+      return {
+        host: parsed.hostname,
+        port: parseInt(parsed.port || "3306", 10),
+        user: decodeURIComponent(parsed.username || "root"),
+        password: decodeURIComponent(parsed.password || ""),
+        database: parsed.pathname.replace(/^\//, "") || "tenantflow_cms",
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0,
+        connectTimeout: 8000,
+        ssl:
+          process.env.MYSQL_SSL === "true" || (!isLocal && process.env.MYSQL_SSL !== "false")
+            ? { rejectUnauthorized: false }
+            : undefined,
+      };
+    } catch (e) {
+      console.warn("Could not parse DATABASE_URL, falling back to individual env variables:", e);
+    }
+  }
+
+  const host = process.env.MYSQL_HOST || "127.0.0.1";
+  const isLocal = host === "127.0.0.1" || host === "localhost";
+
   return {
-    host: process.env.MYSQL_HOST || "127.0.0.1",
+    host,
     port: parseInt(process.env.MYSQL_PORT || "3306", 10),
     user: process.env.MYSQL_USER || "root",
     password: process.env.MYSQL_PASSWORD || "",
@@ -14,7 +42,11 @@ function getDbConfig() {
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    connectTimeout: 4000,
+    connectTimeout: 8000,
+    ssl:
+      process.env.MYSQL_SSL === "true" || (!isLocal && process.env.MYSQL_SSL !== "false")
+        ? { rejectUnauthorized: false }
+        : undefined,
   };
 }
 
@@ -32,17 +64,26 @@ export async function initDatabase(): Promise<boolean> {
   const config = getDbConfig();
 
   try {
-    // 1. Connect to MySQL server without database first to ensure DB exists
-    const serverConn = await mysql.createConnection({
-      host: config.host,
-      port: config.port,
-      user: config.user,
-      password: config.password,
-      connectTimeout: 4000,
-    });
+    // 1. If running locally, ensure database is created if it does not exist
+    const isLocal = config.host === "127.0.0.1" || config.host === "localhost";
+    if (isLocal) {
+      try {
+        const serverConn = await mysql.createConnection({
+          host: config.host,
+          port: config.port,
+          user: config.user,
+          password: config.password,
+          connectTimeout: 4000,
+        });
 
-    await serverConn.query(`CREATE DATABASE IF NOT EXISTS \`${config.database}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`);
-    await serverConn.end();
+        await serverConn.query(
+          `CREATE DATABASE IF NOT EXISTS \`${config.database}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`
+        );
+        await serverConn.end();
+      } catch (err) {
+        console.warn("Database pre-check notice:", err);
+      }
+    }
 
     // 2. Connect to the database pool and create tables
     const db = getPool();

@@ -67,21 +67,21 @@ export function LivePreviewPane({ tenant, page }: LivePreviewPaneProps) {
   return (
     <div className="space-y-6">
       {/* Simulator Device Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-pink-100/80 bg-white p-4 shadow-sm">
         <div className="flex items-center gap-2">
           <span className="text-base font-bold text-slate-800">⚡ Live Device Simulator</span>
-          <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-800">
+          <span className="rounded-full bg-pink-100 px-2 py-0.5 text-xs font-semibold text-pink-700">
             Realtime Sync
           </span>
         </div>
 
         {/* Viewport Width Toggles */}
-        <div className="flex items-center rounded-2xl border border-slate-200 bg-slate-50 p-1">
+        <div className="flex items-center rounded-2xl border border-pink-100 bg-pink-50/40 p-1">
           <button
             type="button"
             onClick={() => setDevice("desktop")}
             className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
-              device === "desktop" ? "bg-white text-indigo-600 shadow-sm" : "text-slate-500 hover:text-slate-900"
+              device === "desktop" ? "bg-white text-pink-600 shadow-sm font-bold" : "text-slate-500 hover:text-slate-900"
             }`}
           >
             🖥️ Desktop (100%)
@@ -90,7 +90,7 @@ export function LivePreviewPane({ tenant, page }: LivePreviewPaneProps) {
             type="button"
             onClick={() => setDevice("tablet")}
             className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
-              device === "tablet" ? "bg-white text-indigo-600 shadow-sm" : "text-slate-500 hover:text-slate-900"
+              device === "tablet" ? "bg-white text-pink-600 shadow-sm font-bold" : "text-slate-500 hover:text-slate-900"
             }`}
           >
             📱 Tablet (768px)
@@ -99,7 +99,7 @@ export function LivePreviewPane({ tenant, page }: LivePreviewPaneProps) {
             type="button"
             onClick={() => setDevice("mobile")}
             className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
-              device === "mobile" ? "bg-white text-indigo-600 shadow-sm" : "text-slate-500 hover:text-slate-900"
+              device === "mobile" ? "bg-white text-pink-600 shadow-sm font-bold" : "text-slate-500 hover:text-slate-900"
             }`}
           >
             📲 Mobile (375px)
@@ -110,7 +110,7 @@ export function LivePreviewPane({ tenant, page }: LivePreviewPaneProps) {
           href={`/tenant/${tenant.id}/${page.slug === "home" ? "" : page.slug}`}
           target="_blank"
           rel="noreferrer"
-          className="rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition"
+          className="rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:bg-pink-50/50 hover:text-pink-700 transition"
         >
           Open in New Tab ↗
         </a>

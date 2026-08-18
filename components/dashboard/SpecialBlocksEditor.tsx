@@ -137,7 +137,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
   return (
     <div className="space-y-6">
       {/* Module Selector Bar */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">Domain Modules & News</h3>
@@ -162,14 +162,14 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                 onClick={() => setActiveSubTab(tab.id as ModuleTab)}
                 className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition ${
                   isSelected
-                    ? "bg-indigo-600 text-white shadow-sm shadow-indigo-600/20"
-                    : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                    ? "bg-gradient-to-r from-pink-500 to-rose-400 text-white shadow-sm shadow-pink-500/25"
+                    : "bg-slate-50 text-slate-600 hover:bg-pink-50/40 hover:text-pink-700"
                 }`}
               >
                 <span>{tab.label}</span>
                 <span
                   className={`rounded-full px-1.5 py-0.2 text-[10px] ${
-                    isSelected ? "bg-indigo-500 text-white" : "bg-slate-200 text-slate-600"
+                    isSelected ? "bg-white/20 text-white font-bold" : "bg-slate-200 text-slate-600"
                   }`}
                 >
                   {tab.count}
@@ -202,7 +202,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                 <button
                   type="button"
                   onClick={handleAddNotice}
-                  className="rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-indigo-700"
+                  className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-3 py-1.5 text-xs font-bold text-white shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500"
                 >
                   + Add Notice
                 </button>
@@ -210,12 +210,12 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
             </div>
 
             {(tenant.notices || []).length === 0 ? (
-              <div className="rounded-2xl border border-dashed border-slate-300 p-6 text-center text-xs text-slate-500">
+              <div className="rounded-2xl border border-dashed border-pink-200 p-6 text-center text-xs text-slate-500">
                 No notices published yet.
               </div>
             ) : (
               (tenant.notices || []).map((notice) => (
-                <div key={notice.id} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                <div key={notice.id} className="rounded-2xl border border-pink-100 bg-pink-50/20 p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 space-y-2">
                       <input
@@ -224,9 +224,9 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                         value={notice.title}
                         onChange={(e) => handleUpdateNotice(notice.id, "title", e.target.value)}
                         placeholder="Notice headline..."
-                        className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold"
+                        className="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold focus:border-pink-500 focus:outline-none"
                       />
-                      <div className="flex flex-wrap items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-3 text-xs">
                         <input
                           type="date"
                           disabled={!canEdit}
@@ -244,13 +244,13 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                           <option value="Updated">Updated</option>
                           <option value="Regular">Regular</option>
                         </select>
-                        <label className="flex items-center gap-1.5 text-xs font-medium text-slate-700">
+                        <label className="flex items-center gap-1.5 text-xs font-medium text-slate-700 cursor-pointer">
                           <input
                             type="checkbox"
                             disabled={!canEdit}
                             checked={notice.isPinned}
                             onChange={(e) => handleUpdateNotice(notice.id, "isPinned", e.target.checked)}
-                            className="rounded text-indigo-600"
+                            className="rounded text-pink-600 focus:ring-pink-500"
                           />
                           <span>Pin to Top 📌</span>
                         </label>
@@ -282,7 +282,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                 <button
                   type="button"
                   onClick={handleAddProgram}
-                  className="rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-indigo-700"
+                  className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-3 py-1.5 text-xs font-bold text-white shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500"
                 >
                   + Add Program
                 </button>
@@ -291,7 +291,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
 
             <div className="grid gap-3 sm:grid-cols-2">
               {(tenant.programs || []).map((prog) => (
-                <div key={prog.id} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                <div key={prog.id} className="rounded-2xl border border-pink-100 bg-pink-50/20 p-4">
                   <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                     <input
                       type="text"
@@ -319,7 +319,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                       value={prog.name}
                       onChange={(e) => handleUpdateProgram(prog.id, "name", e.target.value)}
                       placeholder="Program name"
-                      className="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold focus:border-pink-500 focus:outline-none"
                     />
                     <textarea
                       rows={2}
@@ -327,7 +327,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                       value={prog.description}
                       onChange={(e) => handleUpdateProgram(prog.id, "description", e.target.value)}
                       placeholder="Course description"
-                      className="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs focus:border-pink-500 focus:outline-none"
                     />
                     <div className="grid grid-cols-2 gap-2">
                       <input
@@ -336,7 +336,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                         value={prog.duration}
                         onChange={(e) => handleUpdateProgram(prog.id, "duration", e.target.value)}
                         placeholder="Duration (e.g. 4 Years)"
-                        className="rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs"
+                        className="rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs focus:border-pink-500 focus:outline-none"
                       />
                       <input
                         type="text"
@@ -344,7 +344,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                         value={prog.eligibility}
                         onChange={(e) => handleUpdateProgram(prog.id, "eligibility", e.target.value)}
                         placeholder="Eligibility"
-                        className="rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs"
+                        className="rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs focus:border-pink-500 focus:outline-none"
                       />
                     </div>
                   </div>
@@ -377,7 +377,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                 <button
                   type="button"
                   onClick={handleAddService}
-                  className="rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-indigo-700"
+                  className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-3 py-1.5 text-xs font-bold text-white shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500"
                 >
                   + Add Service
                 </button>
@@ -386,7 +386,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
 
             <div className="grid gap-3 sm:grid-cols-3">
               {(tenant.services || []).map((svc) => (
-                <div key={svc.id} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-3.5">
+                <div key={svc.id} className="rounded-2xl border border-pink-100 bg-pink-50/20 p-3.5">
                   <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                     <input
                       type="text"
@@ -414,7 +414,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                       value={svc.name}
                       onChange={(e) => handleUpdateService(svc.id, "name", e.target.value)}
                       placeholder="Service name"
-                      className="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold focus:border-pink-500 focus:outline-none"
                     />
                     <textarea
                       rows={2}
@@ -422,7 +422,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                       value={svc.description}
                       onChange={(e) => handleUpdateService(svc.id, "description", e.target.value)}
                       placeholder="Description"
-                      className="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs focus:border-pink-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -454,7 +454,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                 <button
                   type="button"
                   onClick={handleAddStat}
-                  className="rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-indigo-700"
+                  className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-3 py-1.5 text-xs font-bold text-white shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500"
                 >
                   + Add Metric
                 </button>
@@ -463,7 +463,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
 
             <div className="grid gap-3 sm:grid-cols-4">
               {(tenant.statistics || []).map((stat) => (
-                <div key={stat.id} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-3.5">
+                <div key={stat.id} className="rounded-2xl border border-pink-100 bg-pink-50/20 p-3.5">
                   <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                     <input
                       type="text"
@@ -491,7 +491,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                       value={stat.value}
                       onChange={(e) => handleUpdateStat(stat.id, "value", e.target.value)}
                       placeholder="500+"
-                      className="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-sm font-black text-indigo-700"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-sm font-black text-pink-600 focus:border-pink-500 focus:outline-none"
                     />
                     <input
                       type="text"
@@ -499,7 +499,7 @@ export function SpecialBlocksEditor({ tenant, canEdit, onUpdateTenant }: Special
                       value={stat.label}
                       onChange={(e) => handleUpdateStat(stat.id, "label", e.target.value)}
                       placeholder="Metric label"
-                      className="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs focus:border-pink-500 focus:outline-none"
                     />
                   </div>
                 </div>

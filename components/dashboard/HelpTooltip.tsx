@@ -13,7 +13,7 @@ export function HelpTooltip({ tooltip }: { tooltip: string }) {
         onMouseLeave={() => setShowTooltip(false)}
         onClick={() => setShowTooltip(!showTooltip)}
         aria-label="Help information"
-        className="ml-1.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-indigo-50 text-[10px] font-bold text-indigo-600 transition hover:bg-indigo-100 hover:text-indigo-700"
+        className="ml-1.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-pink-50 text-[10px] font-bold text-pink-600 border border-pink-200 transition hover:bg-pink-100 hover:text-pink-700"
       >
         ?
       </button>

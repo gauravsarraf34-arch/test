@@ -14,12 +14,12 @@ interface ThemeEditorProps {
 }
 
 const PRESET_PALETTES = [
+  { name: "Baby Pink Delight", primary: "#f472b6", secondary: "#1e1b2e", accent: "#fb7185" },
+  { name: "Cotton Candy Blush", primary: "#f9a8d4", secondary: "#18181b", accent: "#fda4af" },
+  { name: "Rose Luxury", primary: "#ec4899", secondary: "#1c1917", accent: "#f43f5e" },
   { name: "Indigo Tech", primary: "#4f46e5", secondary: "#0f172a", accent: "#06b6d4" },
   { name: "Emerald Bio", primary: "#059669", secondary: "#064e3b", accent: "#10b981" },
-  { name: "Midnight Purple", primary: "#7c3aed", secondary: "#18181b", accent: "#f43f5e" },
   { name: "Ocean Sapphire", primary: "#2563eb", secondary: "#0f172a", accent: "#f59e0b" },
-  { name: "Rose Luxury", primary: "#e11d48", secondary: "#1c1917", accent: "#fb7185" },
-  { name: "Slate Minimal", primary: "#334155", secondary: "#020617", accent: "#64748b" },
 ];
 
 export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant, onDeleteTenant }: ThemeEditorProps) {
@@ -41,7 +41,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
   return (
     <div className="space-y-6">
       {/* Brand Identity */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">Brand Identity & Navigation</h3>
@@ -59,7 +59,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
               value={tenant.logoText}
               onChange={(e) => onUpdateTenant((t) => ({ ...t, logoText: e.target.value }))}
               placeholder="e.g. Northwind Studio"
-              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
             />
           </div>
 
@@ -71,7 +71,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
               value={tenant.domain}
               onChange={(e) => onUpdateTenant((t) => ({ ...t, domain: e.target.value }))}
               placeholder="e.g. yourbrand.com"
-              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-500 focus:bg-white focus:outline-none font-mono"
+              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none font-mono"
             />
           </div>
 
@@ -105,14 +105,14 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
                 }))
               }
               placeholder="Home, About, Services, Pricing, Contact"
-              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
             />
           </div>
         </div>
       </div>
 
       {/* Color Palette Engine */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">Color Palette & Mood</h3>
@@ -131,14 +131,14 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
                 type="button"
                 disabled={!canEdit}
                 onClick={() => handleApplyPalette(palette)}
-                className="group flex flex-col items-start p-2 rounded-2xl border border-slate-200 hover:border-indigo-400 hover:shadow-md transition text-left bg-slate-50/50"
+                className="group flex flex-col items-start p-2 rounded-2xl border border-pink-100 hover:border-pink-400 hover:shadow-md transition text-left bg-pink-50/20"
               >
                 <div className="flex w-full h-6 rounded-lg overflow-hidden mb-1.5 border border-black/10">
                   <div className="flex-1" style={{ backgroundColor: palette.primary }} />
                   <div className="w-4" style={{ backgroundColor: palette.accent }} />
                   <div className="w-4" style={{ backgroundColor: palette.secondary }} />
                 </div>
-                <span className="text-[11px] font-semibold text-slate-700 truncate w-full group-hover:text-indigo-600">
+                <span className="text-[11px] font-semibold text-slate-700 truncate w-full group-hover:text-pink-600">
                   {palette.name}
                 </span>
               </button>
@@ -241,7 +241,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
       </div>
 
       {/* Layout & Mode */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">Layout & Theme Mode</h3>
@@ -269,7 +269,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
                     }
                     className={`flex items-center justify-center gap-2 rounded-2xl border p-4 text-xs font-bold transition ${
                       isSelected
-                        ? "border-indigo-600 bg-indigo-50/50 text-indigo-900 shadow-sm"
+                        ? "border-pink-500 bg-pink-50/70 text-pink-950 shadow-sm"
                         : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
                     }`}
                   >
@@ -299,7 +299,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
                     }
                     className={`flex flex-col items-center justify-center rounded-2xl border p-3 text-center transition ${
                       isSelected
-                        ? "border-indigo-600 bg-indigo-50/50 text-indigo-900 shadow-sm font-bold"
+                        ? "border-pink-500 bg-pink-50/70 text-pink-950 shadow-sm font-bold"
                         : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 font-medium text-xs"
                     }`}
                   >
@@ -314,7 +314,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
           <div>
             <div className="flex items-center justify-between mb-2">
               <label className="block text-xs font-semibold text-slate-700">Page Container Max-Width</label>
-              <span className="text-[11px] font-mono text-indigo-600 font-bold">
+              <span className="text-[11px] font-mono text-pink-600 font-bold">
                 {theme.containerWidth === "wide"
                   ? "1440px (Wide Standard)"
                   : theme.containerWidth === "standard"
@@ -345,7 +345,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
                     }
                     className={`flex flex-col items-start p-3 rounded-2xl border text-left transition ${
                       isSelected
-                        ? "border-indigo-600 bg-indigo-50/60 text-indigo-950 ring-2 ring-indigo-500/20 shadow-sm"
+                        ? "border-pink-500 bg-pink-50/70 text-pink-950 ring-2 ring-pink-500/20 shadow-sm font-semibold"
                         : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
                     }`}
                   >
@@ -361,7 +361,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
           <div>
             <div className="flex items-center justify-between mb-2">
               <label className="block text-xs font-semibold text-slate-700">Side Margins & Screen Padding</label>
-              <span className="text-[11px] font-mono text-indigo-600 font-bold">
+              <span className="text-[11px] font-mono text-pink-600 font-bold">
                 {theme.pagePadding === "spacious"
                   ? "Spacious (px-16)"
                   : theme.pagePadding === "compact"
@@ -389,7 +389,7 @@ export function ThemeEditor({ tenant, canEdit, canDelete = false, onUpdateTenant
                     }
                     className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-center transition ${
                       isSelected
-                        ? "border-indigo-600 bg-indigo-50/60 text-indigo-950 ring-2 ring-indigo-500/20 shadow-sm font-bold"
+                        ? "border-pink-500 bg-pink-50/70 text-pink-950 ring-2 ring-pink-500/20 shadow-sm font-bold"
                         : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs"
                     }`}
                   >

@@ -39,12 +39,12 @@ export function PageEditor({
   return (
     <div className="space-y-6">
       {/* Page Header Status Bar */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-xl font-bold text-slate-900">{page.title}</h3>
-              <span className="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-xs text-slate-600">
+              <span className="rounded-md bg-pink-50 px-2 py-0.5 font-mono text-xs text-pink-700 border border-pink-100">
                 /{page.slug}
               </span>
             </div>
@@ -53,13 +53,13 @@ export function PageEditor({
 
           <div className="flex flex-wrap items-center gap-3">
             {/* Editor Mode Selector: Standard Blocks vs Pre-built HTML / CKEditor */}
-            <div className="flex rounded-xl border border-slate-200 bg-slate-50 p-1">
+            <div className="flex rounded-xl border border-pink-100 bg-pink-50/40 p-1">
               <button
                 type="button"
                 onClick={() => handleToggleEditorStyle("standard")}
                 className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
                   editorStyle === "standard"
-                    ? "bg-white text-indigo-600 shadow-sm"
+                    ? "bg-white text-pink-600 shadow-sm"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -70,7 +70,7 @@ export function PageEditor({
                 onClick={() => handleToggleEditorStyle("html")}
                 className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
                   editorStyle === "html"
-                    ? "bg-white text-indigo-600 shadow-sm"
+                    ? "bg-white text-pink-600 shadow-sm"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -84,11 +84,11 @@ export function PageEditor({
               onClick={() => onUpdatePage((p) => ({ ...p, published: !p.published }))}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition shadow-sm ${
                 page.published
-                  ? "bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-600/20"
+                  ? "bg-gradient-to-r from-pink-500 to-rose-400 text-white hover:from-pink-600 hover:to-rose-500 shadow-pink-500/25"
                   : "bg-slate-800 text-white hover:bg-slate-700"
               }`}
             >
-              <span className={`h-2 w-2 rounded-full ${page.published ? "bg-emerald-300" : "bg-slate-400"}`} />
+              <span className={`h-2 w-2 rounded-full ${page.published ? "bg-white" : "bg-slate-400"}`} />
               <span>{page.published ? "Published (Live)" : "Draft Mode"}</span>
             </button>
           </div>
@@ -104,7 +104,7 @@ export function PageEditor({
               value={page.title}
               onChange={(e) => onUpdatePage((p) => ({ ...p, title: e.target.value }))}
               placeholder="e.g. Home, About Us, Admissions"
-              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
             />
           </div>
 
@@ -116,7 +116,7 @@ export function PageEditor({
               value={page.slug}
               onChange={(e) => onUpdatePage((p) => ({ ...p, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-_]/g, "-") }))}
               placeholder="e.g. services, about"
-              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-mono font-medium focus:border-indigo-600 focus:bg-white focus:outline-none disabled:opacity-60"
+              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-mono font-medium focus:border-pink-500 focus:bg-white focus:outline-none disabled:opacity-60"
             />
           </div>
         </div>
@@ -139,7 +139,7 @@ export function PageEditor({
         />
       ) : (
         /* Standard Hero Banner Editor */
-        <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+        <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between pb-4 border-b border-slate-100">
             <div>
               <h3 className="text-lg font-bold text-slate-900">Hero Banner</h3>
@@ -166,7 +166,7 @@ export function PageEditor({
                 value={page.heroTitle}
                 onChange={(e) => onUpdatePage((p) => ({ ...p, heroTitle: e.target.value }))}
                 placeholder="e.g. Turn your brand into a digital experience"
-                className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
               />
             </div>
 
@@ -178,7 +178,7 @@ export function PageEditor({
                 value={page.heroSubtitle}
                 onChange={(e) => onUpdatePage((p) => ({ ...p, heroSubtitle: e.target.value }))}
                 placeholder="Write a clear, compelling summary of your offering..."
-                className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
               />
             </div>
 
@@ -191,7 +191,7 @@ export function PageEditor({
                   value={page.buttonText}
                   onChange={(e) => onUpdatePage((p) => ({ ...p, buttonText: e.target.value }))}
                   placeholder="e.g. Get Started Now, Book Consultation"
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -212,7 +212,7 @@ export function PageEditor({
       )}
 
       {/* SEO & Social Metadata */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">SEO & Social Meta Tags</h3>
@@ -232,7 +232,7 @@ export function PageEditor({
               value={tenant.seoTitle}
               onChange={(e) => onUpdateTenant((t) => ({ ...t, seoTitle: e.target.value }))}
               placeholder="e.g. Northwind Studio | Modern Digital Solutions"
-              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
             />
           </div>
 
@@ -246,14 +246,14 @@ export function PageEditor({
               value={tenant.seoDescription}
               onChange={(e) => onUpdateTenant((t) => ({ ...t, seoDescription: e.target.value }))}
               placeholder="A concise, compelling summary for search engines..."
-              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
             />
           </div>
         </div>
       </div>
 
       {/* Page Width & Margin Spacing */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">📐 Page Layout & Container Width</h3>
@@ -282,7 +282,7 @@ export function PageEditor({
                     onClick={() => onUpdatePage((p) => ({ ...p, containerWidth: opt.id }))}
                     className={`flex flex-col items-start p-2.5 rounded-2xl border text-left transition ${
                       isSelected
-                        ? "border-indigo-600 bg-indigo-50/60 text-indigo-950 ring-2 ring-indigo-500/20 shadow-sm"
+                        ? "border-pink-500 bg-pink-50/70 text-pink-950 ring-2 ring-pink-500/20 shadow-sm font-semibold"
                         : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
                     }`}
                   >
@@ -312,7 +312,7 @@ export function PageEditor({
                     onClick={() => onUpdatePage((p) => ({ ...p, pagePadding: opt.id }))}
                     className={`flex flex-col items-center justify-center p-2.5 rounded-2xl border text-center transition ${
                       isSelected
-                        ? "border-indigo-600 bg-indigo-50/60 text-indigo-950 ring-2 ring-indigo-500/20 shadow-sm font-bold"
+                        ? "border-pink-500 bg-pink-50/70 text-pink-950 ring-2 ring-pink-500/20 shadow-sm font-bold"
                         : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs"
                     }`}
                   >

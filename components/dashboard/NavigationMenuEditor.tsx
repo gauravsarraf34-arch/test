@@ -454,7 +454,7 @@ export function NavigationMenuEditor({
   return (
     <div className="space-y-6">
       {/* 1. Header & Quick Actions */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">Navigation Menu & Submenu Manager</h3>
@@ -469,14 +469,14 @@ export function NavigationMenuEditor({
               <button
                 type="button"
                 onClick={handleAutoGenerateFromPages}
-                className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition"
+                className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-pink-50/50 hover:text-pink-700 transition"
               >
                 🔄 Auto-Sync from Pages
               </button>
               <button
                 type="button"
                 onClick={handleOpenAddTopLevel}
-                className="flex items-center gap-1.5 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-sm shadow-indigo-600/20 transition hover:bg-indigo-700"
+                className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-4 py-2 text-xs font-bold text-white shadow-sm shadow-pink-500/25 transition hover:from-pink-600 hover:to-rose-500"
               >
                 <span>+ Add Menu Item</span>
               </button>
@@ -487,7 +487,7 @@ export function NavigationMenuEditor({
         {/* Menu Items Hierarchy Tree */}
         <div className="mt-5 space-y-3">
           {menuItems.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50/50 p-8 text-center">
+            <div className="rounded-2xl border border-dashed border-pink-200 bg-pink-50/30 p-8 text-center">
               <span className="text-3xl">🧭</span>
               <h4 className="mt-2 text-sm font-bold text-slate-800">No Navigation Menu Items</h4>
               <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
@@ -502,24 +502,24 @@ export function NavigationMenuEditor({
               return (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-slate-200 bg-slate-50/60 p-4 transition hover:border-indigo-200"
+                  className="rounded-2xl border border-pink-100/80 bg-pink-50/20 p-4 transition hover:border-pink-300"
                 >
                   {/* Top Level Item Row */}
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-100 text-xs font-bold text-indigo-700">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-pink-100 text-xs font-bold text-pink-700">
                         {index + 1}
                       </span>
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-bold text-slate-900">{item.label}</span>
                           {hasChildren && (
-                            <span className="rounded-md bg-purple-100 px-1.5 py-0.5 text-[10px] font-bold text-purple-700">
+                            <span className="rounded-md bg-rose-100 px-1.5 py-0.5 text-[10px] font-bold text-rose-700">
                               {item.children?.length} Submenu{item.children?.length === 1 ? "" : "s"} ▾
                             </span>
                           )}
                           {item.pageId ? (
-                            <span className="rounded-md bg-blue-50 px-1.5 py-0.5 text-[10px] font-medium text-blue-700">
+                            <span className="rounded-md bg-pink-50 px-1.5 py-0.5 text-[10px] font-medium text-pink-700 border border-pink-100">
                               Linked Page
                             </span>
                           ) : isUnlinked ? (
@@ -577,7 +577,7 @@ export function NavigationMenuEditor({
                         <button
                           type="button"
                           onClick={() => setEditingContentTarget({ menuItem: item })}
-                          className="flex items-center gap-1 rounded-lg bg-white border border-slate-200 px-2.5 py-1 text-xs font-bold text-slate-700 hover:bg-slate-50 shadow-xs"
+                          className="flex items-center gap-1 rounded-lg bg-white border border-slate-200 px-2.5 py-1 text-xs font-bold text-slate-700 hover:bg-pink-50/50 hover:text-pink-700 shadow-xs"
                           title="Edit page content or pre-built HTML template for this menu"
                         >
                           <span>✏️ Content / HTML</span>
@@ -586,7 +586,7 @@ export function NavigationMenuEditor({
                         <button
                           type="button"
                           onClick={() => handleOpenAddSubmenu(item.id)}
-                          className="rounded-lg bg-indigo-50 px-2.5 py-1 text-xs font-bold text-indigo-600 hover:bg-indigo-100"
+                          className="rounded-lg bg-pink-50 border border-pink-200 px-2.5 py-1 text-xs font-bold text-pink-700 hover:bg-pink-100"
                           title="Add dropdown item under this menu"
                         >
                           + Add Submenu
@@ -623,17 +623,17 @@ export function NavigationMenuEditor({
 
                   {/* Nested Submenus List */}
                   {hasChildren && (
-                    <div className="mt-3 pl-6 sm:pl-10 space-y-2 border-l-2 border-indigo-200 ml-3">
+                    <div className="mt-3 pl-6 sm:pl-10 space-y-2 border-l-2 border-pink-200 ml-3">
                       {item.children!.map((subItem, subIndex) => {
                         const isSubUnlinked = !subItem.pageId && (subItem.link === "#" || !subItem.link);
 
                         return (
                           <div
                             key={subItem.id}
-                            className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs shadow-xs"
+                            className="flex items-center justify-between rounded-xl border border-pink-100 bg-white px-3 py-2 text-xs shadow-xs"
                           >
                             <div className="flex items-center gap-2">
-                              <span className="text-slate-400 font-bold">↳</span>
+                              <span className="text-pink-400 font-bold">↳</span>
                               <span className="font-semibold text-slate-800">{subItem.label}</span>
                               <span className="text-[10px] font-mono text-slate-400">{subItem.link}</span>
                               {isSubUnlinked && (
@@ -662,7 +662,7 @@ export function NavigationMenuEditor({
                                   onClick={() =>
                                     setEditingContentTarget({ menuItem: subItem, parentId: item.id })
                                   }
-                                  className="rounded px-2 py-0.5 text-[11px] font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100"
+                                  className="rounded px-2 py-0.5 text-[11px] font-bold text-pink-600 bg-pink-50 hover:bg-pink-100"
                                 >
                                   ✏️ Content / HTML
                                 </button>
@@ -715,7 +715,7 @@ export function NavigationMenuEditor({
       </div>
 
       {/* 2. All Pages Overview & Controls */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">Website Pages ({tenant.pages.length})</h3>
@@ -739,7 +739,7 @@ export function NavigationMenuEditor({
             return (
               <div
                 key={p.id}
-                className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 transition hover:shadow-md hover:border-indigo-300"
+                className="rounded-2xl border border-pink-100 bg-pink-50/20 p-4 transition hover:shadow-md hover:border-pink-300"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
@@ -748,18 +748,18 @@ export function NavigationMenuEditor({
                   </div>
                   <span
                     className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
-                      p.published ? "bg-emerald-100 text-emerald-800" : "bg-slate-200 text-slate-600"
+                      p.published ? "bg-pink-100 text-pink-700" : "bg-slate-200 text-slate-600"
                     }`}
                   >
                     {p.published ? "Live" : "Draft"}
                   </span>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between pt-3 border-t border-slate-200/70">
+                <div className="mt-4 flex items-center justify-between pt-3 border-t border-pink-100/80">
                   <button
                     type="button"
                     onClick={() => onSelectPage(p.id)}
-                    className="text-xs font-bold text-indigo-600 hover:underline"
+                    className="text-xs font-bold text-pink-600 hover:underline"
                   >
                     ✏️ Edit Content →
                   </button>
@@ -818,7 +818,7 @@ export function NavigationMenuEditor({
                   value={menuLabel}
                   onChange={(e) => setMenuLabel(e.target.value)}
                   placeholder="e.g. Website Development, BCA, About Us"
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -830,7 +830,7 @@ export function NavigationMenuEditor({
                     onClick={() => setLinkType("new_page")}
                     className={`rounded-xl border p-2.5 text-xs font-semibold transition text-left ${
                       linkType === "new_page"
-                        ? "border-indigo-600 bg-indigo-50 text-indigo-800"
+                        ? "border-pink-500 bg-pink-50 text-pink-900 ring-2 ring-pink-500/20 font-bold"
                         : "border-slate-200 text-slate-600 hover:bg-slate-50"
                     }`}
                   >
@@ -843,7 +843,7 @@ export function NavigationMenuEditor({
                     onClick={() => setLinkType("page")}
                     className={`rounded-xl border p-2.5 text-xs font-semibold transition text-left ${
                       linkType === "page"
-                        ? "border-indigo-600 bg-indigo-50 text-indigo-800"
+                        ? "border-pink-500 bg-pink-50 text-pink-900 ring-2 ring-pink-500/20 font-bold"
                         : "border-slate-200 text-slate-600 hover:bg-slate-50"
                     }`}
                   >
@@ -856,7 +856,7 @@ export function NavigationMenuEditor({
                     onClick={() => setLinkType("custom")}
                     className={`rounded-xl border p-2.5 text-xs font-semibold transition text-left ${
                       linkType === "custom"
-                        ? "border-indigo-600 bg-indigo-50 text-indigo-800"
+                        ? "border-pink-500 bg-pink-50 text-pink-900 ring-2 ring-pink-500/20 font-bold"
                         : "border-slate-200 text-slate-600 hover:bg-slate-50"
                     }`}
                   >
@@ -869,7 +869,7 @@ export function NavigationMenuEditor({
                     onClick={() => setLinkType("group")}
                     className={`rounded-xl border p-2.5 text-xs font-semibold transition text-left ${
                       linkType === "group"
-                        ? "border-indigo-600 bg-indigo-50 text-indigo-800"
+                        ? "border-pink-500 bg-pink-50 text-pink-900 ring-2 ring-pink-500/20 font-bold"
                         : "border-slate-200 text-slate-600 hover:bg-slate-50"
                     }`}
                   >
@@ -880,9 +880,9 @@ export function NavigationMenuEditor({
               </div>
 
               {linkType === "new_page" && menuLabel && (
-                <div className="rounded-xl border border-indigo-100 bg-indigo-50/50 p-3 text-xs">
-                  <span className="font-semibold text-indigo-900">Generated URL:</span>
-                  <div className="font-mono text-indigo-700 text-[11px] mt-0.5">
+                <div className="rounded-xl border border-pink-100 bg-pink-50/50 p-3 text-xs">
+                  <span className="font-semibold text-pink-900">Generated URL:</span>
+                  <div className="font-mono text-pink-700 text-[11px] mt-0.5">
                     /tenant/{tenant.id}/{slugify(menuLabel)}
                   </div>
                 </div>
@@ -900,7 +900,7 @@ export function NavigationMenuEditor({
                         setMenuLabel(target.title);
                       }
                     }}
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                   >
                     {tenant.pages.map((p) => (
                       <option key={p.id} value={p.id}>
@@ -920,7 +920,7 @@ export function NavigationMenuEditor({
                     value={customUrl}
                     onChange={(e) => setCustomUrl(e.target.value)}
                     placeholder="https://... or #contact"
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-mono focus:border-indigo-600 focus:bg-white focus:outline-none"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-mono focus:border-pink-500 focus:bg-white focus:outline-none"
                   />
                 </div>
               )}
@@ -935,7 +935,7 @@ export function NavigationMenuEditor({
                 </button>
                 <button
                   type="submit"
-                  className="rounded-xl bg-indigo-600 px-5 py-2 text-xs font-bold text-white shadow hover:bg-indigo-700"
+                  className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-5 py-2 text-xs font-bold text-white shadow-sm shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500"
                 >
                   Save Item
                 </button>

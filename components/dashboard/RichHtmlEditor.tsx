@@ -87,7 +87,7 @@ export function RichHtmlEditor({
   return (
     <div className="space-y-4">
       {/* Top Header Card */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">{title}</h3>
@@ -99,7 +99,7 @@ export function RichHtmlEditor({
             <button
               type="button"
               onClick={() => setShowTemplateModal(true)}
-              className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-indigo-600/20 hover:opacity-95 transition"
+              className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-4 py-2 text-xs font-bold text-white shadow-md shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500 transition"
             >
               <span>✨ Insert Pre-built Template</span>
             </button>
@@ -107,14 +107,14 @@ export function RichHtmlEditor({
         </div>
 
         {/* Toolbar & Mode Toggle */}
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 p-2.5">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-pink-100 bg-pink-50/30 p-2.5">
           {/* Mode Switcher */}
           <div className="flex items-center rounded-xl border border-slate-200 bg-white p-1">
             <button
               type="button"
               onClick={() => handleSwitchMode("visual")}
               className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
-                editorMode === "visual" ? "bg-indigo-600 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"
+                editorMode === "visual" ? "bg-gradient-to-r from-pink-500 to-rose-400 text-white shadow-sm font-bold" : "text-slate-600 hover:text-slate-900"
               }`}
             >
               👁️ Visual (WYSIWYG)
@@ -123,7 +123,7 @@ export function RichHtmlEditor({
               type="button"
               onClick={() => handleSwitchMode("code")}
               className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
-                editorMode === "code" ? "bg-indigo-600 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"
+                editorMode === "code" ? "bg-gradient-to-r from-pink-500 to-rose-400 text-white shadow-sm font-bold" : "text-slate-600 hover:text-slate-900"
               }`}
             >
               &lt;/&gt; Raw HTML Code
@@ -272,14 +272,14 @@ export function RichHtmlEditor({
           )}
         </div>
 
-        {/* Editor Area */}
+        {/* Editor Content Area */}
         <div className="mt-4">
           {editorMode === "visual" ? (
             <div
               ref={visualEditorRef}
               contentEditable={canEdit}
               onInput={handleVisualInput}
-              className="min-h-[400px] max-h-[700px] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 text-sm focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 font-sans leading-relaxed"
+              className="min-h-[400px] max-h-[700px] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 text-sm focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-500/10 font-sans leading-relaxed"
               style={{ minHeight: "420px" }}
             />
           ) : (
@@ -289,7 +289,7 @@ export function RichHtmlEditor({
               value={htmlContent}
               onChange={handleCodeChange}
               placeholder="Paste or write HTML markup here with Tailwind or inline CSS..."
-              className="w-full rounded-2xl border border-slate-200 bg-slate-950 p-6 font-mono text-xs text-emerald-400 focus:border-indigo-500 focus:outline-none leading-relaxed"
+              className="w-full rounded-2xl border border-slate-200 bg-slate-950 p-6 font-mono text-xs text-pink-300 focus:border-pink-500 focus:outline-none leading-relaxed"
               style={{ minHeight: "420px" }}
             />
           )}
@@ -299,7 +299,7 @@ export function RichHtmlEditor({
       {/* Pre-built Templates Inserter Modal */}
       {showTemplateModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-2xl animate-in zoom-in-95">
+          <div className="w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-pink-100 bg-white p-6 sm:p-8 shadow-2xl animate-in zoom-in-95">
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div>
                 <h3 className="text-xl font-black text-slate-900">Pre-built HTML Layout Templates</h3>
@@ -328,8 +328,8 @@ export function RichHtmlEditor({
                   onClick={() => setSelectedCategory(cat)}
                   className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
                     selectedCategory === cat
-                      ? "bg-indigo-600 text-white shadow-sm"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      ? "bg-gradient-to-r from-pink-500 to-rose-400 text-white shadow-sm"
+                      : "bg-slate-100 text-slate-600 hover:bg-pink-50 hover:text-pink-700"
                   }`}
                 >
                   {cat}
@@ -349,8 +349,8 @@ export function RichHtmlEditor({
                       onClick={() => setPreviewTemplate(template)}
                       className={`cursor-pointer rounded-2xl border p-4 transition ${
                         isSelected
-                          ? "border-indigo-600 bg-indigo-50/50 shadow-md ring-2 ring-indigo-500/20"
-                          : "border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300"
+                          ? "border-pink-500 bg-pink-50/50 shadow-md ring-2 ring-pink-500/20"
+                          : "border-slate-200 bg-slate-50/50 hover:bg-white hover:border-pink-200"
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
@@ -369,7 +369,7 @@ export function RichHtmlEditor({
               </div>
 
               {/* Template Live Preview & Insert Button */}
-              <div className="md:col-span-7 rounded-2xl border border-slate-200 bg-slate-50 p-4 min-h-[400px] flex flex-col justify-between">
+              <div className="md:col-span-7 rounded-2xl border border-pink-100 bg-slate-50 p-4 min-h-[400px] flex flex-col justify-between">
                 {previewTemplate ? (
                   <>
                     <div className="space-y-3">
@@ -380,7 +380,7 @@ export function RichHtmlEditor({
                         <button
                           type="button"
                           onClick={() => handleInsertTemplate(previewTemplate)}
-                          className="rounded-xl bg-indigo-600 px-4 py-1.5 text-xs font-bold text-white shadow hover:bg-indigo-700"
+                          className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-4 py-1.5 text-xs font-bold text-white shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500"
                         >
                           ✓ Insert This Template
                         </button>
@@ -396,7 +396,7 @@ export function RichHtmlEditor({
                       <button
                         type="button"
                         onClick={() => handleInsertTemplate(previewTemplate)}
-                        className="rounded-xl bg-indigo-600 px-6 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-indigo-700"
+                        className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-6 py-2.5 text-xs font-bold text-white shadow-lg shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500"
                       >
                         🚀 Apply Template to Page
                       </button>

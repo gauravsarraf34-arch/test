@@ -242,9 +242,9 @@ const defaultData: CmsData = {
       logoText: "Northwind",
       nav: ["Home", "Services", "Work", "Pricing", "Contact"],
       theme: {
-        primary: "#1d4ed8",
-        secondary: "#0f172a",
-        accent: "#f59e0b",
+        primary: "#f472b6",
+        secondary: "#1e1b2e",
+        accent: "#fb7185",
         mode: "light",
         layout: "modern",
       },

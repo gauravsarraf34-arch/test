@@ -139,7 +139,7 @@ export function SectionThemeControl({
   );
 
   return (
-    <div className="rounded-2xl border border-indigo-100 bg-indigo-50/30 p-4 transition">
+    <div className="rounded-2xl border border-pink-100 bg-pink-50/30 p-4 transition">
       {/* Header Toggle */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
@@ -147,7 +147,7 @@ export function SectionThemeControl({
           <div>
             <span className="text-xs font-bold text-slate-900">{title} Color Theme</span>
             {hasCustomTheme && (
-              <span className="ml-2 rounded-full bg-indigo-100 px-2 py-0.5 text-[10px] font-bold text-indigo-700">
+              <span className="ml-2 rounded-full bg-pink-100 px-2 py-0.5 text-[10px] font-bold text-pink-700">
                 Custom Theme Active
               </span>
             )}
@@ -157,14 +157,14 @@ export function SectionThemeControl({
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-xl border border-indigo-200 bg-white px-3 py-1.5 text-xs font-bold text-indigo-700 hover:bg-indigo-50 shadow-xs transition"
+          className="rounded-xl border border-pink-200 bg-white px-3 py-1.5 text-xs font-bold text-pink-700 hover:bg-pink-50 shadow-xs transition"
         >
           {isOpen ? "Hide Color Controls ▲" : "Configure Colors ▾"}
         </button>
       </div>
 
       {isOpen && (
-        <div className="mt-4 space-y-4 pt-3 border-t border-indigo-100 animate-in fade-in duration-150">
+        <div className="mt-4 space-y-4 pt-3 border-t border-pink-100 animate-in fade-in duration-150">
           {/* 1-Click Presets Grid */}
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2">
@@ -181,8 +181,8 @@ export function SectionThemeControl({
                     onClick={() => handleApplyPreset(p)}
                     className={`rounded-xl border px-3 py-2 text-xs font-bold text-left transition ${
                       isSelected
-                        ? "border-indigo-600 bg-indigo-600 text-white shadow-sm"
-                        : "border-slate-200 bg-white text-slate-700 hover:border-indigo-300 hover:bg-indigo-50/50"
+                        ? "border-pink-500 bg-gradient-to-r from-pink-500 to-rose-400 text-white shadow-sm"
+                        : "border-slate-200 bg-white text-slate-700 hover:border-pink-300 hover:bg-pink-50/50"
                     }`}
                   >
                     <div>{p.label}</div>
@@ -222,7 +222,7 @@ export function SectionThemeControl({
                     value={theme?.bgColor || ""}
                     onChange={(e) => handleFieldChange("bgColor", e.target.value)}
                     placeholder="#ffffff or linear-gradient(...)"
-                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-mono focus:border-indigo-500 focus:bg-white focus:outline-none"
+                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-mono focus:border-pink-500 focus:bg-white focus:outline-none"
                   />
                 </div>
               </div>
@@ -246,7 +246,7 @@ export function SectionThemeControl({
                     value={theme?.textColor || ""}
                     onChange={(e) => handleFieldChange("textColor", e.target.value)}
                     placeholder="#0f172a or #ffffff"
-                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-mono focus:border-indigo-500 focus:bg-white focus:outline-none"
+                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-mono focus:border-pink-500 focus:bg-white focus:outline-none"
                   />
                 </div>
               </div>
@@ -274,7 +274,7 @@ export function SectionThemeControl({
                     value={theme?.accentColor || ""}
                     onChange={(e) => handleFieldChange("accentColor", e.target.value)}
                     placeholder={brandAccent}
-                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-mono focus:border-indigo-500 focus:bg-white focus:outline-none"
+                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-mono focus:border-pink-500 focus:bg-white focus:outline-none"
                   />
                 </div>
               </div>
@@ -298,7 +298,7 @@ export function SectionThemeControl({
                     value={theme?.borderColor || ""}
                     onChange={(e) => handleFieldChange("borderColor", e.target.value)}
                     placeholder="#e2e8f0 or rgba(...)"
-                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-mono focus:border-indigo-500 focus:bg-white focus:outline-none"
+                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-mono focus:border-pink-500 focus:bg-white focus:outline-none"
                   />
                 </div>
               </div>

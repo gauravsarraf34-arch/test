@@ -79,7 +79,7 @@ export function MediaLibrary({
 
   return (
     <div className="space-y-6">
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">
@@ -92,7 +92,7 @@ export function MediaLibrary({
           <HelpTooltip tooltip="Upload images to use anywhere across your website pages, hero banners, and cards." />
 
           {canEdit && (
-            <label className="cursor-pointer flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-sm shadow-indigo-600/20 transition hover:bg-indigo-700">
+            <label className="cursor-pointer flex items-center gap-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-4 py-2 text-xs font-bold text-white shadow-sm shadow-pink-500/25 transition hover:from-pink-600 hover:to-rose-500">
               <span>{isUploading ? "Uploading..." : "📁 Upload New Image"}</span>
               <input
                 type="file"
@@ -114,7 +114,7 @@ export function MediaLibrary({
         {/* Media Grid */}
         <div className="mt-6">
           {(tenant.media || []).length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50/50 p-12 text-center">
+            <div className="rounded-2xl border border-dashed border-pink-200 bg-pink-50/30 p-12 text-center">
               <span className="text-4xl">🖼️</span>
               <h4 className="mt-2 text-sm font-bold text-slate-800">No Media Uploaded Yet</h4>
               <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
@@ -129,7 +129,7 @@ export function MediaLibrary({
                   <div
                     key={asset.id}
                     className={`group relative overflow-hidden rounded-2xl border bg-slate-50 transition hover:shadow-md ${
-                      isHero ? "border-indigo-500 ring-2 ring-indigo-500/20" : "border-slate-200"
+                      isHero ? "border-pink-500 ring-2 ring-pink-500/20" : "border-slate-200"
                     }`}
                   >
                     <div className="h-36 w-full bg-slate-200 overflow-hidden relative">
@@ -139,7 +139,7 @@ export function MediaLibrary({
                         className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                       />
                       {isHero && (
-                        <div className="absolute top-2 left-2 rounded-md bg-indigo-600 px-2 py-0.5 text-[10px] font-bold text-white shadow">
+                        <div className="absolute top-2 left-2 rounded-md bg-gradient-to-r from-pink-500 to-rose-400 px-2 py-0.5 text-[10px] font-bold text-white shadow">
                           Current Hero Banner
                         </div>
                       )}
@@ -157,7 +157,7 @@ export function MediaLibrary({
                           onClick={() => handleUseAsHero(asset.url)}
                           className={`rounded-lg px-2.5 py-1 text-[11px] font-bold transition ${
                             isHero
-                              ? "bg-emerald-100 text-emerald-800"
+                              ? "bg-pink-100 text-pink-700"
                               : "bg-slate-900 text-white hover:bg-slate-800"
                           }`}
                         >

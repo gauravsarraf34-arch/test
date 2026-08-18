@@ -284,18 +284,18 @@ export function CreateTenantModal({ isOpen, onClose, onCreateTenant }: CreateTen
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm animate-in fade-in duration-150">
-      <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-2xl animate-in zoom-in-95">
+      <div className="relative w-full max-w-2xl rounded-3xl border border-pink-100 bg-white p-6 sm:p-8 shadow-2xl animate-in zoom-in-95">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
           <div>
-            <h3 className="text-xl font-black text-slate-900">Register New Brand / Tenant</h3>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Launch an isolated multi-tenant website with ready-to-use domain modules
+            <h3 className="text-lg font-bold text-slate-900">Add New Tenant / Domain Brand</h3>
+            <p className="text-xs text-slate-500">
+              Create an isolated landing page website with custom theme, routes, notices, and programs
             </p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+            className="rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition"
           >
             ✕
           </button>
@@ -317,8 +317,8 @@ export function CreateTenantModal({ isOpen, onClose, onCreateTenant }: CreateTen
                     onClick={() => handleSelectTemplate(tmpl)}
                     className={`flex flex-col items-start p-3 rounded-2xl border text-left transition ${
                       isSelected
-                        ? "border-indigo-600 bg-indigo-50/50 shadow-md ring-2 ring-indigo-500/20"
-                        : "border-slate-200 bg-slate-50/50 hover:bg-slate-100 hover:border-slate-300"
+                        ? "border-pink-500 bg-pink-50/50 shadow-md ring-2 ring-pink-500/20"
+                        : "border-slate-200 bg-slate-50/50 hover:bg-pink-50/20 hover:border-pink-200"
                     }`}
                   >
                     <span className="text-2xl mb-1">{tmpl.icon}</span>
@@ -346,7 +346,7 @@ export function CreateTenantModal({ isOpen, onClose, onCreateTenant }: CreateTen
                   value={brandName}
                   onChange={(e) => setBrandName(e.target.value)}
                   placeholder="e.g. Apex Academy"
-                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2 text-xs font-bold focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2 text-xs font-bold focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -358,7 +358,7 @@ export function CreateTenantModal({ isOpen, onClose, onCreateTenant }: CreateTen
                   value={domain}
                   onChange={(e) => setDomain(e.target.value)}
                   placeholder="e.g. apex-academy.edu"
-                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2 text-xs font-mono focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2 text-xs font-mono focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -370,7 +370,7 @@ export function CreateTenantModal({ isOpen, onClose, onCreateTenant }: CreateTen
                   value={logoText}
                   onChange={(e) => setLogoText(e.target.value)}
                   placeholder="e.g. Apex"
-                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -446,7 +446,7 @@ export function CreateTenantModal({ isOpen, onClose, onCreateTenant }: CreateTen
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-indigo-600 px-6 py-2.5 text-xs font-bold text-white shadow-lg shadow-indigo-600/30 transition hover:bg-indigo-700"
+              className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-6 py-2.5 text-xs font-bold text-white shadow-lg shadow-pink-500/25 transition hover:from-pink-600 hover:to-rose-500"
             >
               🚀 Register & Launch Brand
             </button>

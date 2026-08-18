@@ -393,8 +393,8 @@ export default function DashboardPage() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-slate-900 text-white font-medium">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-500 border-t-transparent" />
-          <p className="text-sm font-semibold tracking-wide text-slate-300">Loading Control Center...</p>
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-pink-400 border-t-transparent" />
+          <p className="text-sm font-semibold tracking-wide text-pink-100">Loading Control Center...</p>
         </div>
       </main>
     );
@@ -403,18 +403,18 @@ export default function DashboardPage() {
   // Login Screen
   if (!auth.isAuthenticated || !currentUser) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 px-4 py-12">
-        <div className="grid w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/90 shadow-2xl backdrop-blur-xl lg:grid-cols-2">
+      <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-[#230f1c] to-[#1c0b16] px-4 py-12">
+        <div className="grid w-full max-w-5xl overflow-hidden rounded-3xl border border-pink-950/60 bg-slate-900/90 shadow-2xl backdrop-blur-xl lg:grid-cols-2">
           {/* Left Hero */}
-          <div className="relative flex flex-col justify-between p-8 sm:p-12 text-white bg-gradient-to-tr from-indigo-950/80 to-purple-950/50 border-b border-slate-800 lg:border-b-0 lg:border-r">
+          <div className="relative flex flex-col justify-between p-8 sm:p-12 text-white bg-gradient-to-tr from-[#2d1222] via-[#200a18] to-[#150510] border-b border-pink-900/30 lg:border-b-0 lg:border-r">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-indigo-400">
+              <div className="inline-flex items-center gap-2 rounded-full border border-pink-400/30 bg-pink-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-pink-300">
                 <span>TenantFlow CMS 2.0</span>
               </div>
               <h2 className="mt-6 text-3xl sm:text-4xl font-black tracking-tight leading-tight">
                 Empower your teams to build, edit, and publish in real time.
               </h2>
-              <p className="mt-4 text-sm text-slate-400 leading-relaxed">
+              <p className="mt-4 text-sm text-pink-200/70 leading-relaxed">
                 A multi-tenant visual studio with live device preview, instant theme customization, and zero-code page building.
               </p>
             </div>
@@ -424,14 +424,14 @@ export default function DashboardPage() {
                 <span className="text-2xl">🏢</span>
                 <div>
                   <p className="text-xs font-bold text-white">Multi-Brand Isolation</p>
-                  <p className="text-[11px] text-slate-400">Manage multiple domains & themes from one panel</p>
+                  <p className="text-[11px] text-pink-200/60">Manage multiple domains & themes from one panel</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3">
                 <span className="text-2xl">⚡</span>
                 <div>
                   <p className="text-xs font-bold text-white">Instant Viewport Simulation</p>
-                  <p className="text-[11px] text-slate-400">Desktop, Tablet, and Mobile simulators</p>
+                  <p className="text-[11px] text-pink-200/60">Desktop, Tablet, and Mobile simulators</p>
                 </div>
               </div>
             </div>
@@ -452,7 +452,7 @@ export default function DashboardPage() {
                   required
                   value={loginForm.email}
                   onChange={(e) => setLoginForm((cur) => ({ ...cur, email: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -463,7 +463,7 @@ export default function DashboardPage() {
                   required
                   value={loginForm.password}
                   onChange={(e) => setLoginForm((cur) => ({ ...cur, password: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -476,38 +476,38 @@ export default function DashboardPage() {
               <button
                 type="submit"
                 disabled={isLoggingIn}
-                className="w-full rounded-xl bg-indigo-600 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-600/30 transition hover:bg-indigo-700 disabled:opacity-50"
+                className="w-full rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 py-3 text-sm font-bold text-white shadow-lg shadow-pink-500/25 transition hover:from-pink-600 hover:to-rose-500 disabled:opacity-50"
               >
                 {isLoggingIn ? "Signing in..." : "Enter Workspace →"}
               </button>
             </form>
 
             {/* Demo Accounts List */}
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            <div className="mt-6 rounded-2xl border border-pink-100 bg-pink-50/40 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-pink-600 font-semibold">
                 Quick Demo Credentials
               </p>
               <div className="mt-2 space-y-1 text-xs text-slate-700">
                 <div
-                  className="cursor-pointer p-1 rounded hover:bg-white transition flex justify-between"
+                  className="cursor-pointer p-1.5 rounded-lg hover:bg-white transition flex justify-between"
                   onClick={() => setLoginForm({ email: "admin@tenantflow.io", password: "admin123" })}
                 >
                   <span className="font-semibold">👑 Admin:</span>
-                  <span className="font-mono text-[11px]">admin@tenantflow.io / admin123</span>
+                  <span className="font-mono text-[11px] text-pink-700">admin@tenantflow.io / admin123</span>
                 </div>
                 <div
-                  className="cursor-pointer p-1 rounded hover:bg-white transition flex justify-between"
+                  className="cursor-pointer p-1.5 rounded-lg hover:bg-white transition flex justify-between"
                   onClick={() => setLoginForm({ email: "editor@tenantflow.io", password: "editor123" })}
                 >
                   <span className="font-semibold">✍️ Editor:</span>
-                  <span className="font-mono text-[11px]">editor@tenantflow.io / editor123</span>
+                  <span className="font-mono text-[11px] text-pink-700">editor@tenantflow.io / editor123</span>
                 </div>
                 <div
-                  className="cursor-pointer p-1 rounded hover:bg-white transition flex justify-between"
+                  className="cursor-pointer p-1.5 rounded-lg hover:bg-white transition flex justify-between"
                   onClick={() => setLoginForm({ email: "designer@tenantflow.io", password: "designer123" })}
                 >
                   <span className="font-semibold">🎨 Designer:</span>
-                  <span className="font-mono text-[11px]">designer@tenantflow.io / designer123</span>
+                  <span className="font-mono text-[11px] text-pink-700">designer@tenantflow.io / designer123</span>
                 </div>
               </div>
             </div>

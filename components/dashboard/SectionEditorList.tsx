@@ -262,14 +262,14 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
   return (
     <div className="space-y-6">
       {/* Header & Add Trigger */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-lg font-bold text-slate-900">
                 Content Blocks ({page.sections.length})
               </h3>
-              <span className="rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-bold text-indigo-700">
+              <span className="rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-bold text-pink-700 border border-pink-100">
                 Fully Configurable
               </span>
             </div>
@@ -284,7 +284,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
               <button
                 type="button"
                 onClick={() => setShowAddMenu(!showAddMenu)}
-                className="flex items-center gap-1.5 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-sm shadow-indigo-600/20 transition hover:bg-indigo-700 cursor-pointer"
+                className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-4 py-2 text-xs font-bold text-white shadow-sm shadow-pink-500/25 transition hover:from-pink-600 hover:to-rose-500 cursor-pointer"
               >
                 <span>+ Add Content Block</span>
                 <span className="text-[10px]">{showAddMenu ? "▲" : "▼"}</span>
@@ -292,7 +292,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
 
               {/* Template Picker Dropdown */}
               {showAddMenu && (
-                <div className="absolute right-0 top-full z-30 mt-2 w-80 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl animate-in fade-in zoom-in-95">
+                <div className="absolute right-0 top-full z-30 mt-2 w-80 rounded-2xl border border-pink-100 bg-white p-2 shadow-2xl animate-in fade-in zoom-in-95">
                   <p className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">
                     Choose Block Template
                   </p>
@@ -302,11 +302,11 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                         key={tmpl.type}
                         type="button"
                         onClick={() => handleAddSection(tmpl.type)}
-                        className="w-full flex items-start gap-3 rounded-xl p-2.5 text-left transition hover:bg-indigo-50/70 cursor-pointer group"
+                        className="w-full flex items-start gap-3 rounded-xl p-2.5 text-left transition hover:bg-pink-50/70 cursor-pointer group"
                       >
                         <span className="text-xl group-hover:scale-110 transition-transform">{tmpl.icon}</span>
                         <div>
-                          <p className="text-xs font-bold text-slate-800 group-hover:text-indigo-600">{tmpl.title}</p>
+                          <p className="text-xs font-bold text-slate-800 group-hover:text-pink-600">{tmpl.title}</p>
                           <p className="text-[11px] text-slate-500 leading-tight">{tmpl.desc}</p>
                         </div>
                       </button>
@@ -321,7 +321,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
         {/* Section Cards List */}
         <div className="mt-5 space-y-5">
           {page.sections.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50/50 p-8 text-center">
+            <div className="rounded-2xl border border-dashed border-pink-200 bg-pink-50/30 p-8 text-center">
               <span className="text-3xl">🧩</span>
               <h4 className="mt-2 text-sm font-bold text-slate-800">No Content Blocks Added</h4>
               <p className="text-xs text-slate-500 mt-1">
@@ -336,21 +336,21 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
               return (
                 <div
                   key={section.id}
-                  className="rounded-2xl border border-slate-200 bg-white shadow-xs overflow-hidden transition focus-within:border-indigo-500"
+                  className="rounded-2xl border border-pink-100/80 bg-white shadow-xs overflow-hidden transition focus-within:border-pink-500"
                 >
                   {/* Card Header Toolbar */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 p-4 bg-slate-50/80 border-b border-slate-200/80">
+                  <div className="flex flex-wrap items-center justify-between gap-2 p-4 bg-pink-50/30 border-b border-pink-100/80">
                     <div className="flex items-center gap-2">
                       <span className="text-lg">{section.icon || (section.type === "features" ? "✨" : section.type === "testimonials" ? "💬" : section.type === "cta" ? "🚀" : section.type === "html" ? "⚡" : "📄")}</span>
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-bold text-slate-900">{section.title || "Untitled Block"}</span>
-                          <span className="rounded-md bg-indigo-100 px-1.5 py-0.2 text-[9px] font-bold uppercase tracking-wider text-indigo-700">
+                          <span className="rounded-md bg-pink-100 px-1.5 py-0.2 text-[9px] font-bold uppercase tracking-wider text-pink-700">
                             {section.type}
                           </span>
                           <span className="text-[11px] text-slate-400 font-mono">#{index + 1}</span>
                           {hasCustomTheme && (
-                            <span className="rounded-md bg-purple-100 px-1.5 py-0.2 text-[9px] font-bold text-purple-700">
+                            <span className="rounded-md bg-rose-100 px-1.5 py-0.2 text-[9px] font-bold text-rose-700">
                               🎨 Custom Color
                             </span>
                           )}
@@ -367,7 +367,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                             type="button"
                             onClick={() => setActiveTab(section.id, "content")}
                             className={`rounded-lg px-2.5 py-1 text-xs font-bold transition ${
-                              curTab === "content" ? "bg-indigo-600 text-white shadow-xs" : "text-slate-600 hover:text-slate-900"
+                              curTab === "content" ? "bg-gradient-to-r from-pink-500 to-rose-400 text-white shadow-xs" : "text-slate-600 hover:text-slate-900"
                             }`}
                           >
                             📝 Content
@@ -376,7 +376,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                             type="button"
                             onClick={() => setActiveTab(section.id, "layout")}
                             className={`rounded-lg px-2.5 py-1 text-xs font-bold transition ${
-                              curTab === "layout" ? "bg-indigo-600 text-white shadow-xs" : "text-slate-600 hover:text-slate-900"
+                              curTab === "layout" ? "bg-gradient-to-r from-pink-500 to-rose-400 text-white shadow-xs" : "text-slate-600 hover:text-slate-900"
                             }`}
                           >
                             ⚙️ Layout & Options
@@ -385,7 +385,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                             type="button"
                             onClick={() => setActiveTab(section.id, "theme")}
                             className={`rounded-lg px-2.5 py-1 text-xs font-bold transition ${
-                              curTab === "theme" ? "bg-purple-600 text-white shadow-xs" : "text-slate-600 hover:text-slate-900"
+                              curTab === "theme" ? "bg-rose-400 text-white shadow-xs" : "text-slate-600 hover:text-slate-900"
                             }`}
                           >
                             🎨 Colors
@@ -437,7 +437,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                               value={section.title}
                               onChange={(e) => handleUpdate(section.id, "title", e.target.value)}
                               placeholder="e.g. Why Choose Our Solution"
-                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                             />
                           </div>
 
@@ -447,7 +447,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                               disabled={!canEdit}
                               value={section.type}
                               onChange={(e) => handleUpdate(section.id, "type", e.target.value as SectionType)}
-                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                             >
                               <option value="features">Key Features</option>
                               <option value="testimonials">Client Testimonials</option>
@@ -466,7 +466,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                             value={section.description}
                             onChange={(e) => handleUpdate(section.id, "description", e.target.value)}
                             placeholder="A concise summary explaining this section..."
-                            className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                            className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                           />
                         </div>
 
@@ -480,7 +480,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                               <button
                                 type="button"
                                 onClick={() => setShowHtmlSnippetsModal(section.id)}
-                                className="text-xs font-bold text-indigo-600 hover:text-indigo-700 underline flex items-center gap-1"
+                                className="text-xs font-bold text-pink-600 hover:text-pink-700 underline flex items-center gap-1"
                               >
                                 <span>📚 Browse Pre-Built HTML Snippets</span>
                               </button>
@@ -491,7 +491,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                               value={section.customHtml || ""}
                               onChange={(e) => handleUpdate(section.id, "customHtml", e.target.value)}
                               placeholder="<div class='...'>Write or paste raw HTML here...</div>"
-                              className="w-full rounded-xl border border-slate-200 bg-slate-950 p-3 font-mono text-xs text-emerald-400 focus:border-indigo-500 focus:outline-none leading-relaxed"
+                              className="w-full rounded-xl border border-slate-200 bg-slate-950 p-3 font-mono text-xs text-pink-300 focus:border-pink-500 focus:outline-none leading-relaxed"
                             />
                           </div>
                         ) : (
@@ -508,7 +508,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                                   value={section.content}
                                   onChange={(e) => handleUpdate(section.id, "content", e.target.value)}
                                   placeholder="Enter detailed content, paragraphs, or instructions..."
-                                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                                 />
                               </div>
                             )}
@@ -540,7 +540,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                                       ? "Real-time synchronization\nEnterprise grade security\nZero coding required"
                                       : '"This CMS transformed our marketing operations."\n"Saved over 20 hours of manual page building every week."'
                                   }
-                                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-indigo-500 focus:bg-white focus:outline-none font-mono"
+                                  className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none font-mono"
                                 />
                               </div>
                             )}
@@ -552,9 +552,9 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                     {/* ================= TAB 2: LAYOUT & CONFIGURATION OPTIONS ================= */}
                     {curTab === "layout" && (
                       <div className="space-y-4">
-                        <div className="rounded-2xl border border-indigo-100 bg-indigo-50/40 p-4">
-                          <h4 className="text-xs font-bold text-indigo-950">Block Display & Visual Configuration</h4>
-                          <p className="text-[11px] text-indigo-700/80">Customize how this block renders on your public page and live preview</p>
+                        <div className="rounded-2xl border border-pink-100 bg-pink-50/40 p-4">
+                          <h4 className="text-xs font-bold text-pink-950">Block Display & Visual Configuration</h4>
+                          <p className="text-[11px] text-pink-700/80">Customize how this block renders on your public page and live preview</p>
                         </div>
 
                         {/* Layout Style Mode */}
@@ -579,7 +579,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                                   onClick={() => handleUpdate(section.id, "layout", opt.id)}
                                   className={`rounded-xl border p-2.5 text-left transition cursor-pointer ${
                                     isSelected
-                                      ? "border-indigo-600 bg-indigo-50 text-indigo-950 ring-2 ring-indigo-500/20 font-bold"
+                                      ? "border-pink-500 bg-pink-50 text-pink-950 ring-2 ring-pink-500/20 font-bold"
                                       : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700"
                                   }`}
                                 >
@@ -599,7 +599,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                               disabled={!canEdit}
                               value={section.columns || 3}
                               onChange={(e) => handleUpdate(section.id, "columns", parseInt(e.target.value))}
-                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                             >
                               <option value={1}>1 Column (Full Width)</option>
                               <option value={2}>2 Columns (Half Width)</option>
@@ -616,7 +616,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                               value={section.badge || ""}
                               onChange={(e) => handleUpdate(section.id, "badge", e.target.value)}
                               placeholder="e.g. POPULAR, NEW, HIGHLIGHT"
-                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-indigo-500 focus:bg-white focus:outline-none uppercase"
+                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none uppercase"
                             />
                           </div>
 
@@ -629,7 +629,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                               value={section.icon || ""}
                               onChange={(e) => handleUpdate(section.id, "icon", e.target.value)}
                               placeholder="e.g. ✨, 🚀, 💡"
-                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-indigo-500 focus:bg-white focus:outline-none"
+                              className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                             />
                           </div>
                         </div>
@@ -646,7 +646,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                                 value={section.buttonText || ""}
                                 onChange={(e) => handleUpdate(section.id, "buttonText", e.target.value)}
                                 placeholder="e.g. Get Started, Learn More"
-                                className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium focus:border-indigo-500 focus:outline-none"
+                                className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium focus:border-pink-500 focus:outline-none"
                               />
                             </div>
                             <div>
@@ -657,7 +657,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                                 value={section.buttonUrl || ""}
                                 onChange={(e) => handleUpdate(section.id, "buttonUrl", e.target.value)}
                                 placeholder="e.g. /contact, https://..."
-                                className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium focus:border-indigo-500 focus:outline-none font-mono text-[11px]"
+                                className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium focus:border-pink-500 focus:outline-none font-mono text-[11px]"
                               />
                             </div>
                           </div>
@@ -671,7 +671,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                                 value={section.secondaryButtonText || ""}
                                 onChange={(e) => handleUpdate(section.id, "secondaryButtonText", e.target.value)}
                                 placeholder="e.g. View Documentation"
-                                className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium focus:border-indigo-500 focus:outline-none"
+                                className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium focus:border-pink-500 focus:outline-none"
                               />
                             </div>
                             <div>
@@ -682,7 +682,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                                 value={section.secondaryButtonUrl || ""}
                                 onChange={(e) => handleUpdate(section.id, "secondaryButtonUrl", e.target.value)}
                                 placeholder="e.g. #details"
-                                className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium focus:border-indigo-500 focus:outline-none font-mono text-[11px]"
+                                className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium focus:border-pink-500 focus:outline-none font-mono text-[11px]"
                               />
                             </div>
                           </div>
@@ -724,7 +724,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
       {/* Pre-Built HTML Snippets Modal */}
       {showHtmlSnippetsModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs animate-in fade-in">
-          <div className="w-full max-w-2xl rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4">
+          <div className="w-full max-w-2xl rounded-3xl border border-pink-100 bg-white p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div>
                 <h3 className="text-base font-bold text-slate-900">📚 1-Click Pre-Built HTML Templates</h3>
@@ -743,7 +743,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
               {PREBUILT_HTML_SNIPPETS.map((snippet, sIdx) => (
                 <div
                   key={sIdx}
-                  className="rounded-2xl border border-slate-200 bg-slate-50/60 p-4 space-y-2 hover:border-indigo-500 hover:bg-white transition"
+                  className="rounded-2xl border border-slate-200 bg-slate-50/60 p-4 space-y-2 hover:border-pink-500 hover:bg-white transition"
                 >
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">{snippet.icon}</span>
@@ -758,7 +758,7 @@ export function SectionEditorList({ page, tenant, canEdit, onUpdatePage }: Secti
                       handleUpdate(showHtmlSnippetsModal, "customHtml", snippet.html);
                       setShowHtmlSnippetsModal(null);
                     }}
-                    className="w-full mt-2 rounded-xl bg-indigo-600 py-2 text-xs font-bold text-white shadow-xs hover:bg-indigo-700 transition cursor-pointer"
+                    className="w-full mt-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 py-2 text-xs font-bold text-white shadow-xs hover:from-pink-600 hover:to-rose-500 transition cursor-pointer"
                   >
                     Insert Template →
                   </button>

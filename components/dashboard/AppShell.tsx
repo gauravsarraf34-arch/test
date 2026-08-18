@@ -35,12 +35,12 @@ export function AppShell({
   };
 
   return (
-    <div className="min-h-screen bg-slate-950/2 text-slate-900 antialiased selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-pink-50/20 text-slate-900 antialiased selection:bg-pink-400 selection:text-white">
       {/* Top Header */}
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-pink-100/80 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/20 font-black text-lg">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-pink-500 via-rose-400 to-pink-400 text-white shadow-md shadow-pink-500/25 font-black text-lg">
               TF
             </div>
             <div>
@@ -48,7 +48,7 @@ export function AppShell({
                 <span className="text-sm font-bold tracking-tight text-slate-900">
                   TenantFlow CMS
                 </span>
-                <span className="rounded-md bg-indigo-50 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-indigo-600 border border-indigo-100">
+                <span className="rounded-md bg-pink-50 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-pink-600 border border-pink-200/80">
                   v2.0
                 </span>
               </div>

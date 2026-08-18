@@ -89,7 +89,7 @@ export function ImageUploadField({
             type="button"
             disabled={!canEdit || isUploading}
             onClick={() => fileInputRef.current?.click()}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-200 bg-indigo-50/80 px-2.5 py-1 text-[11px] font-bold text-indigo-700 shadow-2xs transition hover:bg-indigo-100 hover:text-indigo-900 disabled:opacity-50 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-pink-200 bg-pink-50/80 px-2.5 py-1 text-[11px] font-bold text-pink-700 shadow-2xs transition hover:bg-pink-100 hover:text-pink-900 disabled:opacity-50 cursor-pointer"
           >
             <span>{isUploading ? "⏳ Uploading..." : "📁 Upload Image"}</span>
           </button>
@@ -127,7 +127,7 @@ export function ImageUploadField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-mono text-slate-800 placeholder:text-slate-400 focus:border-indigo-500 focus:bg-white focus:outline-none"
+          className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-mono text-slate-800 placeholder:text-slate-400 focus:border-pink-500 focus:bg-white focus:outline-none"
         />
       </div>
 
@@ -159,7 +159,7 @@ export function ImageUploadField({
               href={value}
               target="_blank"
               rel="noreferrer"
-              className="inline-block text-[11px] font-semibold text-indigo-600 hover:underline"
+              className="inline-block text-[11px] font-semibold text-pink-600 hover:underline"
             >
               Open Full Image ↗
             </a>
@@ -195,7 +195,7 @@ export function ImageUploadField({
                   }}
                   className={`group relative cursor-pointer rounded-2xl border p-2 transition hover:scale-102 hover:shadow-md ${
                     value === media.url
-                      ? "border-indigo-600 ring-2 ring-indigo-500/20 bg-indigo-50/50"
+                      ? "border-pink-500 ring-2 ring-pink-500/20 bg-pink-50/50"
                       : "border-slate-200 bg-slate-50/50 hover:bg-white"
                   }`}
                 >

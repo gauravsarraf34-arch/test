@@ -172,7 +172,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
   return (
     <div className="space-y-6">
       {/* Top Selector Card */}
-      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-pink-100/80 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <h3 className="text-lg font-bold text-slate-900">Header & Footer Global Details</h3>
@@ -183,13 +183,13 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
           <HelpTooltip tooltip="Header top bar displays quick phone/email contact. Footer displays full multi-column links, contact details, and social channels." />
 
           {/* Section Toggle */}
-          <div className="flex rounded-xl border border-slate-200 bg-slate-50 p-1">
+          <div className="flex rounded-xl border border-pink-100 bg-pink-50/40 p-1">
             <button
               type="button"
               onClick={() => setActiveTab("header")}
               className={`rounded-lg px-4 py-1.5 text-xs font-bold transition ${
                 activeTab === "header"
-                  ? "bg-white text-indigo-600 shadow-sm"
+                  ? "bg-white text-pink-600 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -200,7 +200,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
               onClick={() => setActiveTab("footer")}
               className={`rounded-lg px-4 py-1.5 text-xs font-bold transition ${
                 activeTab === "footer"
-                  ? "bg-white text-indigo-600 shadow-sm"
+                  ? "bg-white text-pink-600 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -237,7 +237,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   onChange={(e) => updateHeader((h) => ({ ...h, showTopBar: e.target.checked }))}
                   className="peer sr-only"
                 />
-                <div className="peer h-6 w-11 rounded-full bg-slate-300 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-slate-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-indigo-600 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
+                <div className="peer h-6 w-11 rounded-full bg-slate-300 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-slate-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-pink-500 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
               </label>
             </div>
 
@@ -251,7 +251,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   value={headerConfig.topBarText || ""}
                   onChange={(e) => updateHeader((h) => ({ ...h, topBarText: e.target.value }))}
                   placeholder="e.g. ⚡ Admissions Open for 2026-27 Session — Apply Online"
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -263,7 +263,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   value={headerConfig.email || ""}
                   onChange={(e) => updateHeader((h) => ({ ...h, email: e.target.value }))}
                   placeholder="e.g. admissions@university.edu"
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none font-mono"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none font-mono"
                 />
               </div>
 
@@ -275,7 +275,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   value={headerConfig.phone || ""}
                   onChange={(e) => updateHeader((h) => ({ ...h, phone: e.target.value }))}
                   placeholder="e.g. +1 (800) 555-0199"
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -287,7 +287,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   value={headerConfig.address || ""}
                   onChange={(e) => updateHeader((h) => ({ ...h, address: e.target.value }))}
                   placeholder="e.g. New York Campus, NY"
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -299,7 +299,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   value={headerConfig.ctaText || ""}
                   onChange={(e) => updateHeader((h) => ({ ...h, ctaText: e.target.value }))}
                   placeholder="e.g. Apply Now, Contact Us"
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -341,7 +341,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   value={footerConfig.companyName || ""}
                   onChange={(e) => updateFooter((f) => ({ ...f, companyName: e.target.value }))}
                   placeholder="e.g. Apex Institute of Technology Inc."
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-bold focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-bold focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -353,7 +353,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   value={footerConfig.copyrightText || ""}
                   onChange={(e) => updateFooter((f) => ({ ...f, copyrightText: e.target.value }))}
                   placeholder={`© ${new Date().getFullYear()} Company Name. All rights reserved.`}
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
@@ -377,7 +377,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   value={footerConfig.aboutText || ""}
                   onChange={(e) => updateFooter((f) => ({ ...f, aboutText: e.target.value }))}
                   placeholder="A short, compelling summary of your organization shown in the footer..."
-                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2 text-xs font-medium focus:border-indigo-600 focus:bg-white focus:outline-none"
+                  className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2 text-xs font-medium focus:border-pink-500 focus:bg-white focus:outline-none"
                 />
               </div>
             </div>
@@ -448,7 +448,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                   <button
                     type="button"
                     onClick={handleAddFooterColumn}
-                    className="rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-indigo-700"
+                    className="rounded-xl bg-gradient-to-r from-pink-500 to-rose-400 px-3 py-1.5 text-xs font-bold text-white shadow-pink-500/25 hover:from-pink-600 hover:to-rose-500"
                   >
                     + Add Column
                   </button>
@@ -465,7 +465,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                         value={col.title}
                         onChange={(e) => handleUpdateColumnTitle(colIdx, e.target.value)}
                         placeholder="Column Category"
-                        className="w-full font-bold text-xs text-slate-900 border-b border-transparent focus:border-indigo-600 focus:outline-none"
+                        className="w-full font-bold text-xs text-slate-900 border-b border-transparent focus:border-pink-500 focus:outline-none"
                       />
                       {canEdit && (
                         <button
@@ -514,7 +514,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                         <button
                           type="button"
                           onClick={() => handleAddLinkToColumn(colIdx)}
-                          className="w-full py-1 text-center text-[10px] font-bold text-indigo-600 border border-dashed border-slate-200 rounded-lg hover:bg-indigo-50/50"
+                          className="w-full py-1 text-center text-[10px] font-bold text-pink-600 border border-dashed border-pink-200 rounded-lg hover:bg-pink-50/50"
                         >
                           + Add Link
                         </button>
@@ -543,7 +543,7 @@ export function HeaderFooterEditor({ tenant, canEdit, onUpdateTenant }: HeaderFo
                       value={getSocialUrl(platform.id)}
                       onChange={(e) => handleUpdateSocialLink(platform.id, e.target.value)}
                       placeholder={`https://${platform.id}.com/yourhandle`}
-                      className="w-full rounded-lg border border-slate-200 px-2.5 py-1 text-xs font-mono focus:border-indigo-600 focus:outline-none"
+                      className="w-full rounded-lg border border-slate-200 px-2.5 py-1 text-xs font-mono focus:border-pink-500 focus:outline-none"
                     />
                   </div>
                 ))}

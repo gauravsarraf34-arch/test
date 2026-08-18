@@ -587,11 +587,46 @@ function migrateAndHealData(raw: CmsData): CmsData {
 }
 
 export async function readData(): Promise<CmsData> {
-  // If memory cache exists, return it
+  // 1. If memory cache exists, return it
   if (globalThis.__cmsDataCache) {
     return deepClone(globalThis.__cmsDataCache);
   }
 
+  // 2. Try loading from MySQL database
+  try {
+    const { fetchCmsDataFromDb, saveCmsDataToDb } = await import("./db");
+    const dbData = await fetchCmsDataFromDb();
+    if (dbData && dbData.tenants && dbData.tenants.length > 0) {
+      const healed = migrateAndHealData(dbData);
+      globalThis.__cmsDataCache = healed;
+      return deepClone(healed);
+    }
+
+    // If DB is initialized but empty, try seeding from data/cms.json or defaultData
+    const bundledPath = path.join(process.cwd(), "data", "cms.json");
+    let seedData = defaultData;
+    if (existsSync(bundledPath)) {
+      try {
+        const fileContent = readFileSync(bundledPath, "utf-8");
+        if (fileContent.trim()) {
+          seedData = JSON.parse(fileContent) as CmsData;
+        }
+      } catch {
+        // use defaultData
+      }
+    }
+
+    const healedSeed = migrateAndHealData(seedData);
+    const savedToDb = await saveCmsDataToDb(healedSeed);
+    if (savedToDb) {
+      globalThis.__cmsDataCache = healedSeed;
+      return deepClone(healedSeed);
+    }
+  } catch (dbErr) {
+    console.warn("MySQL read failed or not configured, using file/memory fallback:", dbErr);
+  }
+
+  // 3. File storage fallback
   const filePath = resolveFilePath();
 
   try {
@@ -649,6 +684,15 @@ export async function writeData(data: CmsData): Promise<void> {
   const healed = migrateAndHealData(data);
   globalThis.__cmsDataCache = deepClone(healed);
 
+  // 1. Try saving to MySQL database
+  try {
+    const { saveCmsDataToDb } = await import("./db");
+    await saveCmsDataToDb(healed);
+  } catch (dbErr) {
+    console.warn("MySQL save skipped or failed (operating in fallback mode):", dbErr);
+  }
+
+  // 2. Also write to disk for backup / local parity
   const filePath = resolveFilePath();
 
   try {
@@ -659,6 +703,5 @@ export async function writeData(data: CmsData): Promise<void> {
     writeFileSync(filePath, JSON.stringify(healed, null, 2), "utf-8");
   } catch (error) {
     console.warn("Writing to disk failed (operating in in-memory mode):", error);
-    // In serverless when disk write fails, memory cache still holds the state
   }
 }

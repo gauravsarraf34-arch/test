@@ -17,13 +17,21 @@ A multi-tenant visual website builder and content management system with real-ti
 npm install
 ```
 
-### 2. Run the Development Server
+### 2. Configure Database (XAMPP MySQL)
+- Ensure **MySQL** is started in your **XAMPP Control Panel** (port 3306).
+- The `tenantflow_cms` database and tables are created automatically.
+- (Optional) Run the database initializer:
+```bash
+npx tsx scripts/init-mysql.ts
+```
+
+### 3. Run the Development Server
 ```bash
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 3. Demo Credentials
+### 4. Demo Credentials
 - **👑 Admin**: `admin@tenantflow.io` / `admin123` (Full access to all brands and settings)
 - **✍️ Editor**: `editor@tenantflow.io` / `editor123` (Content editing for Northwind Studio)
 - **🎨 Designer**: `designer@tenantflow.io` / `designer123` (Theme and styling for Luma Health)

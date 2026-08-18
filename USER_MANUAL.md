@@ -47,6 +47,16 @@ Welcome to the **TenantFlow CMS** User Manual! This guide explains everything yo
 ### Prerequisites
 - Node.js version 18.17+ or 20+
 - npm or yarn
+- XAMPP with MySQL running on port 3306
+
+### MySQL Database Setup (XAMPP)
+1. Open **XAMPP Control Panel** and ensure **MySQL** is started (green indicator on port 3306).
+2. The database `tenantflow_cms` and all 8 relational tables are created automatically on first run!
+3. (Optional) Run the migration script to verify tables and migrate initial data:
+   ```bash
+   npx tsx scripts/init-mysql.ts
+   ```
+4. You can view all created tables (`tenants`, `pages`, `users`, `media`, `notices`, `programs`, `services`, `statistics`) in phpMyAdmin at **`http://localhost/phpmyadmin`**.
 
 ### Running the App
 1. Open your terminal in the project directory:

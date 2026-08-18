@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏢 TenantFlow CMS
 
-## Getting Started
+A multi-tenant visual website builder and content management system with real-time responsive simulation, dynamic theme customization, role-based access control, and multi-brand isolation.
 
-First, run the development server:
+---
 
+## 📖 Complete Documentation & Manual
+
+👉 **For the full end-to-end testing guide, step-by-step feature instructions, and QA checklist, see [USER_MANUAL.md](USER_MANUAL.md).**
+
+---
+
+## ⚡ Quick Start
+
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Run the Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Demo Credentials
+- **👑 Admin**: `admin@tenantflow.io` / `admin123` (Full access to all brands and settings)
+- **✍️ Editor**: `editor@tenantflow.io` / `editor123` (Content editing for Northwind Studio)
+- **🎨 Designer**: `designer@tenantflow.io` / `designer123` (Theme and styling for Luma Health)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Key Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Multi-Tenant Architecture**: Switch between multiple brands with complete visual and data isolation.
+- **Theme Engine**: Color palettes, light/dark modes, container widths (1440px wide, 1280px standard, full width, 1024px compact), and margins.
+- **Per-Section Styling**: Independent background gradients, card colors, text colors, and borders for individual blocks.
+- **Live Viewport Simulator**: Test desktop, tablet (768px), and mobile (375px) layouts interactively.
+- **Multi-Level Navigation**: Hierarchical menus with submenus and dropdowns.
+- **Specialized Blocks**: Official notices ticker, academic programs, services, and statistics.
+- **Media Library**: Upload and manage assets with instant preview and integration.
+- **Rich HTML Editor**: Switch to Monaco-style direct HTML/CSS code editing with prebuilt templates.
+- **Dynamic Publishing**: Instant live preview and public tenant URLs at `/tenant/[tenantId]`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Production Build
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm run start
+```

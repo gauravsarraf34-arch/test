@@ -608,6 +608,29 @@ export async function readData(): Promise<CmsData> {
     console.warn("Could not read from file storage, falling back to default data:", error);
   }
 
+  // If resolved file is not found (e.g. fresh lambda /tmp), check bundled data/cms.json
+  const bundledPath = path.join(process.cwd(), "data", "cms.json");
+  if (filePath !== bundledPath) {
+    try {
+      if (existsSync(bundledPath)) {
+        const bundledContent = readFileSync(bundledPath, "utf-8");
+        if (bundledContent.trim()) {
+          const parsed = JSON.parse(bundledContent) as CmsData;
+          const healed = migrateAndHealData(parsed);
+          globalThis.__cmsDataCache = healed;
+          try {
+            await writeData(healed);
+          } catch {
+            // Ignore initial write errors if disk is read-only
+          }
+          return deepClone(healed);
+        }
+      }
+    } catch (error) {
+      console.warn("Could not read bundled cms.json, falling back to default data:", error);
+    }
+  }
+
   // Fallback to default initial data
   const initial = migrateAndHealData(defaultData);
   globalThis.__cmsDataCache = initial;

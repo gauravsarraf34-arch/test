@@ -3,6 +3,9 @@ import { Metadata } from "next";
 import { readData } from "@/lib/cms-store";
 import { TenantPublicView } from "@/components/public/TenantPublicView";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata({
   params,
 }: {

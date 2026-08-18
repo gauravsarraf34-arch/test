@@ -4,6 +4,9 @@ import { readData, CmsTenant, CmsPage, CmsMenuItem } from "@/lib/cms-store";
 import { TenantPublicView } from "@/components/public/TenantPublicView";
 import { Tenant, Page } from "@/types/cms";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 function resolvePage(tenant: CmsTenant, slug: string): Page | null {
   const normSlug = slug.toLowerCase().trim();
 
